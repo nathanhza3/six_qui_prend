@@ -5,6 +5,7 @@ public class Game {
 
     public Game(int number_player) {
         this.number_player = number_player;
+        //
     }
 
 
