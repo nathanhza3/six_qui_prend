@@ -1,5 +1,6 @@
 package com.example.six_qui_prend;
 
+
 public class Player {
     public String getName() {
         return name;
