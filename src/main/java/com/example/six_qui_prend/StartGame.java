@@ -24,6 +24,7 @@ public class StartGame extends Stage {
     private static final int MAX_PLAYERS = 10;
 
     public StartGame() {
+        //test
 
         grid = new GridPane();
         grid.setPadding(new Insets(10, 10, 10, 10));
