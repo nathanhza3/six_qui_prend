@@ -31,12 +31,12 @@ public class StartGame extends Stage {
         grid.setHgap(10);
 
         Label playerNameLabel = new Label("Player's Name:");
-        Label playerTypeLabel = new Label("Player's Type :");
+        //Label playerTypeLabel = new Label("Player's Type :");
         currentRow = 2;
         addPlayerRow();
         addPlayerRow();
         grid.add(playerNameLabel, 1, 0);
-        grid.add(playerTypeLabel, 2, 0);
+        //grid.add(playerTypeLabel, 2, 0);
 
         Scene scene = new Scene(grid, 300, 450);
         setScene(scene);
@@ -50,10 +50,6 @@ public class StartGame extends Stage {
 
         TextField playerNameField = new TextField();
         playerNameField.setPromptText("Joueur " + (currentRow - 1));
-        ComboBox<String> playerTypeComboBox = new ComboBox<>();
-        playerTypeComboBox.getItems().addAll("Joueur humain", "IA");
-        // Valeur par défaut. Changé par bot ?
-        playerTypeComboBox.setValue("Joueur humain");
         addPlayerButton = new Button("+");
         addPlayerButton.setOnAction(e -> addPlayerRow());
         startButton = new Button("Start Game");
@@ -61,7 +57,6 @@ public class StartGame extends Stage {
 
 
         grid.add(playerNameField, 1, currentRow);
-        grid.add(playerTypeComboBox, 2, currentRow);
         grid.add(addPlayerButton, 2, currentRow + 1);
         grid.add(startButton, 1, currentRow + 1);
 
