@@ -1,6 +1,6 @@
 package com.example.six_qui_prend;
 
-public class cartes {
+public class Cartes {
     private int number;
     private int number_head;
 
