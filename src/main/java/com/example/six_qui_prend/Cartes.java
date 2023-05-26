@@ -7,6 +7,7 @@ public class Cartes {
     public int getNumber_head() {
         return number_head;
     }
+    // test
 
     public int getNumber() {
         return number;
