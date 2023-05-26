@@ -13,6 +13,8 @@ public class Cartes {
         return number;
     }
 
-
-
+    public Cartes(int number, int number_head) {
+        this.number = number;
+        this.number_head = number_head;
+    }
 }
