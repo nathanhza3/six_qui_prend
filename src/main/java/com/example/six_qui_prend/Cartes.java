@@ -17,4 +17,5 @@ public class Cartes {
         this.number = number;
         this.number_head = number_head;
     }
+
 }

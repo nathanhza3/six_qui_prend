@@ -5,12 +5,12 @@ public class Player {
         return name;
     }
 
-    public Player(String name, String number) {
+    public Player(String name, int number) {
         this.name = name;
         this.number = number;
     }
 
-    public String getNumber() {
+    public int getNumber() {
         return number;
     }
 
@@ -18,11 +18,11 @@ public class Player {
         this.name = name;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 
     private String name;
-    private String number;
+    private int number;
 
 }
