@@ -18,12 +18,26 @@ public class Cartes {
     public ImageIcon getImageIcon() {
         return image;
     }
-    public Cartes(int number, int number_head) {
+    public Cartes(int number) {
         this.number = number;
-        this.number_head = number_head;
-        URL url = getClass().getResource("src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/"+number+".png");
+        if (number == 55) {
+            this.number_head = 7;
+        } else if (number % 10 == 0) {
+            this.number_head = 3;
+        } else if (number % 5 == 0) {
+            this.number_head = 2;
+        } else if (number % 11 == 0) {
+            this.number_head = 5;
+        } else {
+            this.number_head = 1;
+        }
+
+
+        URL url = getClass().getResource("src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + number + ".png");
         this.image = new ImageIcon(url);
     }
+
+
 
 
 
