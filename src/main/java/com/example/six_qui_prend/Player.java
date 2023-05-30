@@ -9,13 +9,14 @@ public class Player {
     private ArrayList<Cartes> cartesRamasse;
 
     private int points;
+    private int id_player;
 
 
     public String getName() {
         return name;
     }
 
-    public Player(String name, int number) {
+    public Player(String name, int number,int id_player) {
         this.name = name;
         this.number = number;
         this.hand = new ArrayList<Cartes>();

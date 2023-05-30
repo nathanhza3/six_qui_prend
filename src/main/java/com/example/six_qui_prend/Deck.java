@@ -13,15 +13,18 @@ public class Deck {
 
             value[i] = new Cartes(i+1);
 
-
         }
-
         Collections.shuffle(Arrays.asList(value));
 
     }
 
 
+    public Cartes getValue_i(int i) {
 
+        return value[i];
+    }
+    public Cartes[] getValue() {
 
-
+        return value;
+    }
 }

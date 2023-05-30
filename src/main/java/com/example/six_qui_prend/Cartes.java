@@ -33,8 +33,8 @@ public class Cartes {
         }
 
 
-        URL url = getClass().getResource("src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + number + ".png");
-        this.image = new ImageIcon(url);
+        //URL url = getClass().getResource("src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + number + ".png");
+        //this.image = new ImageIcon(url);
     }
 
 
