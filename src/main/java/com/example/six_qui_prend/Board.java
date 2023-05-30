@@ -25,7 +25,6 @@ public class Board extends Stage {
         setTitle("distribution");
         affichecartePlateau();
         affichecarteMain();
-        System.out.println("Hello");
         // Ajouter des cartes à la grille
 
     }
