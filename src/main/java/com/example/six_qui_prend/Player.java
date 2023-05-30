@@ -38,11 +38,18 @@ public class Player {
 
    public void choose_Card(){
        for (Cartes carte : this.hand.getValue_list()) {
-
+           System.out.println("numéro de la carte "+carte.getNumber()+" nombre de tete "+carte.getNumber_head());
 
        }
        hand.getValue_list().remove(0);
        hand.setValue_list(hand.getValue_list());
+       System.out.println(hand.getValue_list().size());
+           //TODO:NATHAN et ESTHELLE faire en sorte que c'est la carte qu'il clique/ choisit la on supprime a chaque fois l'index 0
+
+
+
+
+
 
 
    }
