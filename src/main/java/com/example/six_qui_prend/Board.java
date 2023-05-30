@@ -47,6 +47,7 @@ public class Board extends Stage {
         }catch (Exception e) {
             throw new RuntimeException(e);
 
+
         }
     }
     public void affichecarteMain()  { //peu-etre mettre en argument le deck et le joueur pcq on les utilise
