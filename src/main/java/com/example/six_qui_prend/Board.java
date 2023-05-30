@@ -20,7 +20,7 @@ public class Board extends Stage {
         grid.setPadding(new Insets(10, 10, 10, 10));
         grid.setVgap(10);
         grid.setHgap(10);
-        Scene scene = new Scene(grid, 300, 450);
+        Scene scene = new Scene(grid, 1080, 700);
         setScene(scene);
         setTitle("distribution");
         affichecarte();
@@ -30,12 +30,26 @@ public class Board extends Stage {
     }
     public void affichecarte()  {
         try {
-            Image carte1 = chargeImage("src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/1.png");
-            ImageView imageView1 = new ImageView(carte1);
-            grid.add(imageView1, 0, 0);
-            Image carte2 = chargeImage("src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/2.png");
-            ImageView imageView2 = new ImageView(carte2);
-            grid.add(imageView2, 0, 1);
+            for (int i = 101; i <= 104; i++) {
+
+                String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + i + ".png";
+                Image carte = chargeImage(imagePath);
+                ImageView imageView = new ImageView(carte);
+                grid.add(imageView, 0, i-101);
+            }
+            for (int i = 1; i <= 10; i++) {
+
+                String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + i + ".png";
+                Image carte = chargeImage(imagePath);
+                ImageView imageView = new ImageView(carte);
+
+                /*String imageViewName = "imageView_" + i ;
+                imageView.setId(imageViewName);
+
+                 */
+
+                grid.add(imageView, i, 5);
+            }
 
         }catch (Exception e) {
             throw new RuntimeException(e);

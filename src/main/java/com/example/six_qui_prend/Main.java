@@ -7,10 +7,10 @@ public class Main {
             StartGame startGame = new StartGame();
             startGame.show();
 
-        });//M
+        });
         Deck deck= new Deck();
 
-        Hand hand1= new Hand(11,deck.getValue());
+        //Hand hand1= new Hand(11,deck.getValue());
 
     }
 }
