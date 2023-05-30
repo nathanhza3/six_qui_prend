@@ -8,9 +8,8 @@ public class Main {
             startGame.show();
 
         });//M
-        Deck deck= new Deck();
 
-        Hand hand1= new Hand(11,deck.getValue());
+
 
     }
 }
