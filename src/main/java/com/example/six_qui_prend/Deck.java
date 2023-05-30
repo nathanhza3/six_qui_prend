@@ -3,17 +3,23 @@ import java.util.Arrays;
 
 import java.util.Collections;
 public class Deck {
-    private Cartes[] createDeck() {
-        Cartes[] deck = new Cartes[104];
 
-        for (int i = 1; i <= 104; i++) {
+    private Cartes[] value;
 
-            deck[i] = new Cartes(i, number_head(i));
+    public Deck() {
+        this.value = new Cartes[104];
+
+        for (int i = 0; i <= 103; i++) {
+
+            value[i] = new Cartes(i+1, number_head(i+1));
+
 
         }
-        Collections.shuffle(Arrays.asList(deck));
-        return deck;
+        System.out.println(value[10].getNumber());
+        Collections.shuffle(Arrays.asList(value));
+        System.out.println(value[10].getNumber());
     }
+
 
     private int number_head(int i){
         if(i==55){
@@ -29,4 +35,6 @@ public class Deck {
         }
 
     }
+
+
 }
