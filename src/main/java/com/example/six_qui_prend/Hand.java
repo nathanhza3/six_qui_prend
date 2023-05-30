@@ -8,6 +8,15 @@ import java.util.List;
 public class Hand {
     private Cartes[] value;
     public List<Cartes> value_list;
+
+    public void setValue_list(List<Cartes> value_list) {
+        this.value_list = value_list;
+    }
+
+    public List<Cartes> getValue_list() {
+        return value_list;
+    }
+
     private int id_player;
     public Hand(int id_player, Cartes[] deckvalue) {
         this.value = new Cartes[10];

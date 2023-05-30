@@ -37,11 +37,13 @@ public class Player {
     }
 
    public void choose_Card(){
-       for (Cartes carte : this.hand.getValue()) {
-           System.out.println("numéro de la carte "+carte.getNumber()+" nombre de tete "+carte.getNumber_head());
-           //TODO:NATHAN et ESTHELLE faire en sorte que c'est la carte qu'il clique/ choisit
+       for (Cartes carte : this.hand.getValue_list()) {
+
 
        }
+       hand.getValue_list().remove(0);
+       hand.setValue_list(hand.getValue_list());
+
 
    }
 
