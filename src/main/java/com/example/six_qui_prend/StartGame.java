@@ -53,7 +53,7 @@ public class StartGame extends Stage {
         addPlayerButton = new Button("+");
         addPlayerButton.setOnAction(e -> addPlayerRow());
         startButton = new Button("Start Game");
-        //startButton.setOnAction(e -> startGame());
+        startButton.setOnAction(e -> startGame());
 
 
         grid.add(playerNameField, 1, currentRow);
@@ -62,9 +62,32 @@ public class StartGame extends Stage {
 
         currentRow++;
     }
+    private void startGame() {
 
+        // Récupérer les informations sur les joueurs et commencer le jeu
+        List<Player> players = new ArrayList<>();
 
+        /*for (int i = 2; i < currentRow; i++) {
+            Button playerNameButton = (Button) grid.getChildren().get(i * 2 - 1);
+            String playerName = playerNameButton.getText();
+            if (!playerName.isEmpty()) {
+                Player player = new Player(playerName);
+                players.add(player);
+            }
+        }
+
+        if (players.size() < MIN_PLAYERS) {
+            // Afficher un message d'erreur ou prendre une autre action appropriée
+            return;
+        }*/
+        close();
+        Board firstWindow = new Board();
+        firstWindow.show();
+    }
 }
+
+
+
 
 
 
