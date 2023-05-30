@@ -11,7 +11,7 @@ public class Deck {
 
         for (int i = 0; i <= 103; i++) {
 
-            //value[i] = new Cartes(i+1, number_head(i+1));
+            value[i] = new Cartes(i+1, number_head(i+1));
 
 
         }
