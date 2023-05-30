@@ -4,7 +4,7 @@ package com.example.six_qui_prend;
 import java.util.List;
 
 public class Deck {
-    private List<Cartes> createDeck() {
+    /*private List<Cartes> createDeck() {
         ListCartes<> deck = new Cartes[104];
         int index = 0;
         for (int i = 1; i <= 104; i++) {
@@ -13,6 +13,6 @@ public class Deck {
             index++;
         }
         shuffleDeck(deck);
-        return deck;
+        return deck;*/
 }
 
