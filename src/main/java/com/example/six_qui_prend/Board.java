@@ -56,26 +56,34 @@ public class Board extends Stage {
 
         }
     }
-    public void affichecarteMain(Player player)  { //peu-etre mettre en argument le deck et le joueur pcq on les utilise
+    public void affichecarteMain(Player player)  { //peut-etre mettre en argument le deck et le joueur pcq on les utilise
         try {
+
             for (Cartes carte : player.hand.getValue_list()) {
-                //10 cartes de la main du joueur
-                //changer source et mettre la main
+                    //10 cartes de la main du joueur
+                    //changer source et mettre la main
 
-                //int j= i+PLAYER_ID*10; //comme ça le 1 joueur(avec un id=0) ça va de 1 à 10 ET le 2ème de 11à20 ect..
-                //int a = Deck[i];   prendre la valeur de la ième carte du deck
+                    //int j= i+PLAYER_ID*10; //comme ça le 1 joueur(avec un id=0) ça va de 1 à 10 ET le 2ème de 11à20 ect..
+                    //int a = Deck[i];   prendre la valeur de la ième carte du deck
 
-                String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" +carte.getNumber()  + ".png";
-                Image card = chargeImage(imagePath);
-                ImageView imageView = new ImageView(card);
+
+
+                    //player.hand.getValue_i(i);
+                    //String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + player.hand.getValue()[i].getNumber() + ".png";
+
+                    String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + carte.getNumber() + ".png";
+                    Image card = chargeImage(imagePath);
+                    ImageView imageView = new ImageView(card);
+
 
                 /*String imageViewName = "imageView_" + i ;
                 imageView.setId(imageViewName);
 
                  */
 
-                grid.add(imageView, carte.getNumber(), 5);
-            }
+                    grid.add(imageView, carte.getNumber(), 5);
+
+                }
 
         }catch (Exception e) {
             throw new RuntimeException(e);
