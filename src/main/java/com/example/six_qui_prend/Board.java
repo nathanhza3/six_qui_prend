@@ -34,6 +34,7 @@ public class Board extends Stage {
         System.out.println("Hello");
         // Ajouter des cartes à la grille
 
+
     }
     public void affichecartePlateau(Deck deck)  {
         try {
