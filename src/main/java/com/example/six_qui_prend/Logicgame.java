@@ -18,7 +18,7 @@ public class Logicgame {
     }*/
 
 
-    public static boolean testPetit(Cartes cardToPlace, List<Cartes> cards){
+    /*public static boolean testPetit(Cartes cardToPlace, List<Cartes> cards){
         boolean isPetit = true;
         for (Cartes carte : cards) {
             if(carte.getValue()<cardToPlace.getValue()){
@@ -26,7 +26,7 @@ public class Logicgame {
             }
         }
         return isPetit;
-    }
+    }*/
 
 
 }
