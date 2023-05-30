@@ -9,13 +9,19 @@ public class Hand {
     public Hand(int id_player, Cartes[] deckvalue) {
         this.value = new Cartes[10];
 
-        for (int i = 0; i<=id_player*10; i++) {
-
-            this.value[i] = deckvalue[i];
+        for (int a=0; a<=9; a++) {
 
 
-
+            this.value[a]=deckvalue[id_player+a-1];
+            System.out.println(getValue_i(a).getNumber());
         }
 
+
+
+
+    }
+    public Cartes getValue_i(int i) {
+
+        return value[i];
     }
 }
