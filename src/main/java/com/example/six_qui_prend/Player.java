@@ -15,7 +15,7 @@ public class Player {
         return name;
     }
 
-    public Player(String name, int number) {
+    public Player(String name) {
         this.name = name;
         this.number = number;
         this.hand = new ArrayList<Cartes>();
