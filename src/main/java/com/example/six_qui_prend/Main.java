@@ -8,8 +8,10 @@ public class Main {
             startGame.show();
 
         });//M
-
-
+        Deck deck = new Deck();
+        Hand hand1= new Hand(1,deck.getValue());
+        Player player1 = new Player("Jérémy",1,1,hand1);
+        player1.choose_Card();
 
     }
 }
