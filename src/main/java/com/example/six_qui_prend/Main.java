@@ -6,6 +6,7 @@ public class Main {
         Platform.startup(()->{
             StartGame startGame = new StartGame();
             startGame.show();
+
         });
     }
 }
