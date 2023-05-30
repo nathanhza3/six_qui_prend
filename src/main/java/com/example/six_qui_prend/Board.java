@@ -3,7 +3,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
 
-public class Board extends Application{
+public abstract class Board extends Application{
     private GridPane grid;
     public Began{
         grid = new GridPane();
