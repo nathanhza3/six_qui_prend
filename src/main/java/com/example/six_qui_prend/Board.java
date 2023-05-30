@@ -23,22 +23,40 @@ public class Board extends Stage {
         Scene scene = new Scene(grid, 1080, 700);
         setScene(scene);
         setTitle("distribution");
-        affichecarte();
+        affichecartePlateau();
+        affichecarteMain();
         System.out.println("Hello");
         // Ajouter des cartes à la grille
 
     }
-    public void affichecarte()  {
+    public void affichecartePlateau()  {
         try {
             for (int i = 101; i <= 104; i++) {
+                //4 cartes du début du jeu
+
+                //int a = Cartes[i];
+                //choper la valeur de la 101ème carte du deck
+
 
                 String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + i + ".png";
                 Image carte = chargeImage(imagePath);
                 ImageView imageView = new ImageView(carte);
-                grid.add(imageView, 0, i-101);
+                grid.add(imageView, 0, i - 101);
             }
+
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+
+        }
+    }
+    public void affichecarteMain()  { //peu-etre mettre en argument le deck et le joueur pcq on les utilise
+        try {
             for (int i = 1; i <= 10; i++) {
+                //10 cartes de la main du joueur
                 //changer source et mettre la main
+
+                //int j= i+PLAYER_ID*10; //comme ça le 1 joueur(avec un id=0) ça va de 1 à 10 ET le 2ème de 11à20 ect..
+                //int a = Deck[i];   prendre la valeur de la ième carte du deck
 
                 String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + i + ".png";
                 Image carte = chargeImage(imagePath);
