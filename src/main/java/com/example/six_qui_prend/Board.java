@@ -1,9 +1,8 @@
 package com.example.six_qui_prend;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
 
-public class Board extends Application{
+public class Board extends Stage{
     private GridPane grid;
     public Began{
         grid = new GridPane();
