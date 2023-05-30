@@ -20,7 +20,7 @@ public class Logicgame {
 
     public static boolean testPetit(Cartes cardToPlace, List<Cartes> cards){
         boolean isPetit = true;
-        for (Carte carte : cards) {
+        for (Cartes carte : cards) {
             if(carte.getValue()<cardToPlace.getValue()){
                 isPetit = false;
             }
