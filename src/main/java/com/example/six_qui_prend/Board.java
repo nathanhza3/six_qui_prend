@@ -38,6 +38,7 @@ public class Board extends Stage {
                 grid.add(imageView, 0, i-101);
             }
             for (int i = 1; i <= 10; i++) {
+                //changer source et mettre la main
 
                 String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + i + ".png";
                 Image carte = chargeImage(imagePath);
