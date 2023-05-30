@@ -18,7 +18,7 @@ public class Cartes {
     public ImageIcon getImageIcon() {
         return image;
     }
-    public Cartes(int number, int number_head, ImageIcon image) {
+    public Cartes(int number, int number_head) {
         this.number = number;
         this.number_head = number_head;
         URL url = getClass().getResource("src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/"+number+".png");
