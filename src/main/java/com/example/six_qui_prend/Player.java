@@ -5,7 +5,7 @@ import java.util.*;
 public class Player {
     private String name;
     private int number;
-    public ArrayList<Cartes> hand;
+    public Hand hand;
     private ArrayList<Cartes> cartesRamasse;
 
     private int points;
@@ -16,10 +16,10 @@ public class Player {
         return name;
     }
 
-    public Player(String name, int number,int id_player) {
+    public Player(String name, int number,int id_player,Hand hand) {
         this.name = name;
         this.number = number;
-        this.hand = new ArrayList<Cartes>();
+        this.hand = hand;
         this.cartesRamasse = new ArrayList<Cartes>();
         this.points = 0;
     }
@@ -36,20 +36,16 @@ public class Player {
         this.number = number;
     }
 
-    public ArrayList<Cartes> getHand() {
-        return hand;
-    }
+   public void choose_Card(){
+       for (Cartes carte : this.hand.getValue()) {
+           System.out.println(carte);
+           for (int i = 0; i < hand.value_list.size(); i++) {
+               System.out.println(hand.value_list.get(i));
+           }
 
-    public void setHand(ArrayList<Cartes> hand) {
-        this.hand = hand;
-    }
 
-    public ArrayList<Cartes> getCartesRamasse() {
-        return cartesRamasse;
-    }
+       }
 
-    public void setCartesRamasse(ArrayList<Cartes> cartesRamasse) {
-        this.cartesRamasse = cartesRamasse;
-    }
+   }
 
 }
