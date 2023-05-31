@@ -85,7 +85,20 @@ public class StartGame extends Stage {
         }*/
 
         close();
-        Board firstWindow = new Board();
+        Deck deck = new Deck();
+        List<Player> playerList=new ArrayList<>();
+
+        Hand hand1= new Hand(1,deck.getValue());
+        Hand hand2= new Hand(11,deck.getValue());
+        Hand hand3= new Hand(21,deck.getValue());
+        Player player1 = new Player("Jérémy",1,1,hand1);
+        Player player2=new Player("estelle",2,11,hand2);
+        Player player3=new Player("nathan",3,21,hand3);
+        playerList.add(player1);
+        playerList.add(player3);
+        playerList.add(player2);
+
+        Board firstWindow = new Board(playerList,deck);
         firstWindow.show();
     }
 
