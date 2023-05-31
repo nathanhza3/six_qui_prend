@@ -47,6 +47,8 @@ public class Player {
        hand.getValue_list().remove(0); //ici
        hand.setValue_list(hand.getValue_list());
        System.out.println(hand.getValue_list().size()); // test
+       //Board.selection();
+
        //TODO:NATHAN et ESTHELLE faire en sorte que c'est la carte qu'il clique/ choisit la on supprime a chaque fois l'index 0
        return choose_card;
     }
@@ -76,6 +78,7 @@ public class Player {
 
 
 
-   }
 
 
+
+}
