@@ -1,5 +1,4 @@
 package com.example.six_qui_prend;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
@@ -8,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
-import java.io.IOException;
 
 
 public class Board extends Stage {
@@ -48,7 +46,9 @@ public class Board extends Stage {
                 String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + deck.getValue()[i].getNumber() + ".png";
                 Image carte = chargeImage(imagePath);
                 ImageView imageView = new ImageView(carte);
+                imageView.setId("imageView" +deck.getValue()[i].getNumber());
                 grid.add(imageView, 0, i - 100); // ici j'ai modifié j'ai mis 100 avant il yavait 101 jsp trop pk
+
             }
 
         }catch (Exception e) {
@@ -76,21 +76,22 @@ public class Board extends Stage {
                     String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + carte.getNumber() + ".png";
                     Image card = chargeImage(imagePath);
                     ImageView imageView = new ImageView(card);
-
-
-                /*String imageViewName = "imageView_" + i ;
-                imageView.setId(imageViewName);
-
-                 */
-
+                    imageView.setId(""+carte.getNumber());
+                    imageView.setOnMouseClicked(event -> selection(imageView));
                     grid.add(imageView, a, 5);
-
                 }
 
         }catch (Exception e) {
             throw new RuntimeException(e);
 
         }
+    }
+    private void selection(ImageView imageView){
+        // Réagir au clic sur l'image
+        // Par exemple, afficher un message "Hello" dans la console
+        System.out.println("Hello"+imageView);
+
+
     }
     public static Image chargeImage(String url) throws Exception{
         //Image image = new Image(Objects.requireNonNull(HelloApplication.class.getResource(url)).openStream());
