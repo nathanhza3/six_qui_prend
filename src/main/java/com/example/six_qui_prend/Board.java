@@ -39,7 +39,7 @@ public class Board extends Stage {
     private void recupCartes(List<Player> playerList){
         List<Tuple> list_carte_player= new ArrayList<>();
         for(Player player: playerList){
-
+            affichecarteMain(player);
             Tuple tuple=new Tuple(player.choose_Card().getNumber(),player);
             list_carte_player.add(tuple);
 

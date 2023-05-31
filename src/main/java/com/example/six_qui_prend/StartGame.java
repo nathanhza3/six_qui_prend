@@ -65,10 +65,30 @@ public class StartGame extends Stage {
 
 
     }
+    private List<Hand> créer_hand(int n, Deck deck){
+        List<Hand> hands = new ArrayList<>();
+        int a=1;
+        for (int i=1;i<=n;i++) {
+            Hand hand = new Hand(a, deck.getValue());
+            hands.add(hand);
+            a += 10;
+        }
+        return hands;
+    }
+    private List<Player> créer_player(int n, List<Hand> hands){
+        List<Player> players_List = new ArrayList<>();
+        int a=1;
+        for (int i=1;i<=n;i++) {
+            Player player = new Player("Jérémy",i,a,hands.get(i));
+            players_List.add(player);
+            a += 10;
+        }
+        return players_List;
+    }
     private void startGame() {
 
         // Récupérer les informations sur les joueurs et commencer le jeu
-        List<Player> players = new ArrayList<>();
+
 
         /*for (int i = 2; i < currentRow; i++) {
             Button playerNameButton = (Button) grid.getChildren().get(i * 2 - 1);
@@ -86,17 +106,11 @@ public class StartGame extends Stage {
 
         close();
         Deck deck = new Deck();
-        List<Player> playerList=new ArrayList<>();
+        int n=3;
+        List<Hand> hands=créer_hand(n, deck);
+        List<Player> playerList=créer_player(n,  hands);
 
-        Hand hand1= new Hand(1,deck.getValue());
-        Hand hand2= new Hand(11,deck.getValue());
-        Hand hand3= new Hand(21,deck.getValue());
-        Player player1 = new Player("Jérémy",1,1,hand1);
-        Player player2=new Player("estelle",2,11,hand2);
-        Player player3=new Player("nathan",3,21,hand3);
-        playerList.add(player1);
-        playerList.add(player3);
-        playerList.add(player2);
+
 
         Board firstWindow = new Board(playerList,deck);
         firstWindow.show();
