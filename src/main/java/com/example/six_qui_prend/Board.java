@@ -118,6 +118,7 @@ public class Board extends Stage {
         File file = new File(url);
         Image image = new Image(file.toURI().toString());
         return image;
+        //
     }
 
 }
