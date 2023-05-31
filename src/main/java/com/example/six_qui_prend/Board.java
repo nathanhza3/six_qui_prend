@@ -104,6 +104,7 @@ public class Board extends Stage {
                 grid.add(imageView, a, 5);
 
 
+
                 }
 
         }catch (Exception e) {
