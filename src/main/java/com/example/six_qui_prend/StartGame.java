@@ -74,7 +74,10 @@ public class StartGame extends Stage {
             Hand hand = new Hand(a, deck.getValue());
             hands.add(hand);
             a += 10;
+
         }
+        System.out.println(hands.get(0).getValue_list_i(1).getNumber());
+        System.out.println(hands.get(1).getValue_list_i(1).getNumber());
         return hands;
     }
     private List<Player> créer_player(List<String> playerNames, List<Hand> hands){

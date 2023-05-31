@@ -16,6 +16,9 @@ public class Hand {
     public List<Cartes> getValue_list() {
         return value_list;
     }
+    public Cartes getValue_list_i(int i) {
+        return value_list.get(i);
+    }
 
     private int id_player;
     public Hand(int id_player, Cartes[] deckvalue) {
