@@ -108,6 +108,7 @@ public class Board extends Stage {
                 ImageView imageView = new ImageView(card);
                 imageView.setId(""+carte.getNumber());
                 imageView.setOnMouseClicked(event -> selection(imageView));
+                //imageView.setOnMouseClicked(event2 -> player.choose_Card());
 
 
                 grid.add(imageView, a, 5);
