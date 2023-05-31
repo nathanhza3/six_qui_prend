@@ -79,10 +79,19 @@ public class Board extends Stage {
     }
     public void affichecarteMain(Player player)  { //peut-etre mettre en argument le deck et le joueur pcq on les utilise
         try {
-            int a=1;
+            int a=0;
+            for (int b = 1; b <= 10; b++) {
+                String newImagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/blanc.png";
+                Image newImage = chargeImage(newImagePath);
+                ImageView blanc = new ImageView(newImage);
+                grid.add(blanc, b, 5);
+
+            }
 
             for (Cartes carte : player.hand.getValue_list()) {
                 a+=1;
+
+
                 //10 cartes de la main du joueur
                 //changer source et mettre la main
 
@@ -115,17 +124,15 @@ public class Board extends Stage {
 
     public void selection(ImageView imageView) {
         try {
-            //TODO:
-            //System.out.println("Hello"+imageView);
+            System.out.println(imageView);
 
             String newImagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/blanc.png";
             Image newImage = chargeImage(newImagePath);
 
             imageView.setImage(newImage);
 
-            double x = imageView.getLayoutX();
-            double y = imageView.getLayoutY();
-
+            //double x = imageView.getLayoutX();
+            //double y = imageView.getLayoutY();
             //System.out.println(imageView.getLayoutY());
             //System.out.println(imageView.getX());
 
