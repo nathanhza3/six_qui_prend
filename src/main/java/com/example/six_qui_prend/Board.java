@@ -12,7 +12,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 
-
+import java.util.HashMap;
+import java.util.Map;
 
 public class Board extends Stage {
     private GridPane grid;
@@ -37,14 +38,12 @@ public class Board extends Stage {
 
 
     }
-    private void recupCartes(List<Player> playerList){
+    public void recupCartes(List<Player> playerList){
         List<Tuple> list_carte_player= new ArrayList<>();
         for(Player player: playerList){
 
             Tuple tuple=new Tuple(player.choose_Card().getNumber(),player);
             list_carte_player.add(tuple);
-
-
         }
         Collections.sort(list_carte_player, new Comparator<Tuple>() {
             @Override
@@ -84,23 +83,26 @@ public class Board extends Stage {
 
             for (Cartes carte : player.hand.getValue_list()) {
                 a+=1;
-                    //10 cartes de la main du joueur
-                    //changer source et mettre la main
+                //10 cartes de la main du joueur
+                //changer source et mettre la main
 
-                    //int j= i+PLAYER_ID*10; //comme ça le 1 joueur(avec un id=0) ça va de 1 à 10 ET le 2ème de 11à20 ect..
-                    //int a = Deck[i];   prendre la valeur de la ième carte du deck
+                //int j= i+PLAYER_ID*10; //comme ça le 1 joueur(avec un id=0) ça va de 1 à 10 ET le 2ème de 11à20 ect..
+                //int a = Deck[i];   prendre la valeur de la ième carte du deck
 
 
 
-                    //player.hand.getValue_i(i);
-                    //String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + player.hand.getValue()[i].getNumber() + ".png";
+                //player.hand.getValue_i(i);
+                //String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + player.hand.getValue()[i].getNumber() + ".png";
 
-                    String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + carte.getNumber() + ".png";
-                    Image card = chargeImage(imagePath);
-                    ImageView imageView = new ImageView(card);
-                    imageView.setId(""+carte.getNumber());
-                    imageView.setOnMouseClicked(event -> selection(imageView));
-                    grid.add(imageView, a, 5);
+                String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + carte.getNumber() + ".png";
+                Image card = chargeImage(imagePath);
+                ImageView imageView = new ImageView(card);
+                imageView.setId(""+carte.getNumber());
+                imageView.setOnMouseClicked(event -> selection(imageView));
+
+
+                grid.add(imageView, a, 5);
+
 
                 }
 
@@ -109,13 +111,37 @@ public class Board extends Stage {
 
         }
     }
-    private void selection(ImageView imageView){
-        // Réagir au clic sur l'image
-        // Par exemple, afficher un message "Hello" dans la console
-        System.out.println("Hello"+imageView);
+
+    public void selection(ImageView imageView) {
+        try {
+            //TODO:
+            //System.out.println("Hello"+imageView);
+
+            String newImagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/blanc.png";
+            Image newImage = chargeImage(newImagePath);
+
+            imageView.setImage(newImage);
+
+            double x = imageView.getLayoutX();
+            double y = imageView.getLayoutY();
+
+            //System.out.println(imageView.getLayoutY());
+            //System.out.println(imageView.getX());
 
 
-    }
+        }
+
+    catch (Exception e) {
+        throw new RuntimeException(e);
+
+    }}
+
+
+
+
+
+
+
     public static Image chargeImage(String url) throws Exception{
         //Image image = new Image(Objects.requireNonNull(HelloApplication.class.getResource(url)).openStream());
         //System.out.println(image);
