@@ -1,20 +1,23 @@
 package com.example.six_qui_prend;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
+import java.util.Comparator;
+import java.util.List;
 import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+
 
 
 public class Board extends Stage {
+    private List<Player> playerList;
     private GridPane grid;
 
-    public  Board() {
+    public  Board(List<Player> playerList,Deck deck) {
 
         grid = new GridPane();
         grid.setPadding(new Insets(10, 10, 10, 10));
@@ -25,17 +28,34 @@ public class Board extends Stage {
         setTitle("distribution");
 
         // ca ne doit pas être ici c'est pour tester
-        Deck deck = new Deck();
-        Hand hand1= new Hand(1,deck.getValue());
-        Player player1 = new Player("Jérémy",1,1,hand1);
+
         //jusque ici et retirer meme le player 1
         affichecartePlateau(deck);
-        affichecarteMain(player1);
+        recupCartes(playerList);
         System.out.println("Hello");
         // Ajouter des cartes à la grille
 
 
     }
+    private void recupCartes(List<Player> playerList){
+        List<Tuple> list_carte_player= new ArrayList<>();
+        for(Player player: playerList){
+
+            Tuple tuple=new Tuple(player.choose_Card().getNumber(),player);
+            list_carte_player.add(tuple);
+
+
+        }
+        Collections.sort(list_carte_player, new Comparator<Tuple>() {
+            @Override
+            public int compare(Tuple tuple1, Tuple tuple2) {
+                return Integer.compare(tuple1.getCarte_value(), tuple2.getCarte_value());
+            }
+        });
+
+
+    }
+
     public void affichecartePlateau(Deck deck)  {
         try {
             for (int i = 100; i <= 103; i++) {
@@ -99,4 +119,5 @@ public class Board extends Stage {
         Image image = new Image(file.toURI().toString());
         return image;
     }
+
 }
