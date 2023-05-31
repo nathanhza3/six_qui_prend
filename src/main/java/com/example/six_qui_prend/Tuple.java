@@ -16,4 +16,5 @@ public class Tuple {
     public Player getPlayer() {
         return player;
     }
+    //
 }
