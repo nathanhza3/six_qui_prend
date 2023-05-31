@@ -30,6 +30,7 @@ public class Board extends Stage {
         // ca ne doit pas être ici c'est pour tester
       //jusque ici et retirer meme le player 1
         affichecartePlateau(deck);
+        affichecarteMain(playerList.get(0));
         recupCartes(playerList);
         System.out.println("Hello");
         // Ajouter des cartes à la grille
