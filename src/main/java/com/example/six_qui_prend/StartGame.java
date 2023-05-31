@@ -77,19 +77,18 @@ public class StartGame extends Stage {
         }
         return hands;
     }
-    private List<Player> créer_player(int n, List<Hand> hands){
+    private List<Player> créer_player(List<String> playerNames, List<Hand> hands){
         List<Player> players_List = new ArrayList<>();
         int a=1;
-        for (int i=1;i<=n;i++) {
-            Player player = new Player("Jérémy",i,a,hands.get(i));
+        int i=1;
+        for (String name : playerNames) {
+            Player player = new Player(name,i,a,hands.get(i));
             players_List.add(player);
             a += 10;
         }
         return players_List;
     }
-    private void startGame() {
-
-        // Elle crée une nouvelle liste vide appelée players pour stocker les informations des joueurs
+    private List<String> recupName(){
         List<String> playerNames = new ArrayList<>();
 
         for (Node node : grid.getChildren()) {
@@ -100,13 +99,23 @@ public class StartGame extends Stage {
                 // Verifie que le champs n est pas vide
                 if (playerName.isEmpty()) {
                     showAlert("Player's name cannot be empty.");
-                    return;
+                    return null;
                 }
 
-
                 playerNames.add(playerName);
+
+
             }
         }
+        return playerNames;
+    }
+    private void startGame() {
+
+        // Elle crée une nouvelle liste vide appelée players pour stocker les informations des joueurs
+        List<String> playerNames = new ArrayList<>();
+
+        playerNames=recupName();
+
 
         // Validate the number of players
         if (playerNames.size() < MIN_PLAYERS) {
@@ -121,22 +130,13 @@ public class StartGame extends Stage {
 
         close();
         Deck deck = new Deck();
-        int n=3;
+        int n=playerNames.size();
         List<Hand> hands=créer_hand(n, deck);
-        List<Player> playerList=créer_player(n,  hands);
+        List<Player> playerList=créer_player(playerNames,  hands);
 
-        Hand hand1= new Hand(1,deck.getValue());
-        Hand hand2= new Hand(11,deck.getValue());
-        Hand hand3= new Hand(21,deck.getValue());
-        Player player1 = new Player("Jérémy",1,1,hand1);
-        Player player2=new Player("estelle",2,11,hand2);
-        Player player3=new Player("nathan",3,21,hand3);
-        playerList.add(player1);
-        playerList.add(player3);
-        playerList.add(player2);
 
-            Board firstWindow = new Board(playerList, deck);
-            firstWindow.show();
+        Board firstWindow = new Board(playerList, deck);
+         firstWindow.show();
         }
 
 
