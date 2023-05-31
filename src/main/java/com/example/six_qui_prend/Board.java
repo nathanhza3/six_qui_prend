@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.Collections;
 
 
+
 public class Board extends Stage {
     private GridPane grid;
 
