@@ -1,5 +1,6 @@
 package com.example.six_qui_prend;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -12,7 +13,8 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 public class StartGame extends Stage {
     private GridPane grid;
     private Label numPlayersLabel;
@@ -65,43 +67,86 @@ public class StartGame extends Stage {
 
 
     }
-    private void startGame() {
+    private List<Hand> créer_hand(int n, Deck deck){
+        List<Hand> hands = new ArrayList<>();
+        int a=1;
+        for (int i=1;i<=n;i++) {
+            Hand hand = new Hand(a, deck.getValue());
+            hands.add(hand);
+            a += 10;
+        }
+        return hands;
+    }
+    private List<Player> créer_player(List<String> playerNames, List<Hand> hands){
+        List<Player> players_List = new ArrayList<>();
+        int a=1;
+        int i=1;
+        for (String name : playerNames) {
+            Player player = new Player(name,i,a,hands.get(i));
+            players_List.add(player);
+            a += 10;
+        }
+        return players_List;
+    }
+    private List<String> recupName(){
+        List<String> playerNames = new ArrayList<>();
 
-        // Récupérer les informations sur les joueurs et commencer le jeu
-        List<Player> players = new ArrayList<>();
+        for (Node node : grid.getChildren()) {
+            if (node instanceof TextField) {
+                TextField playerNameField = (TextField) node;
+                String playerName = playerNameField.getText().trim();
 
-        /*for (int i = 2; i < currentRow; i++) {
-            Button playerNameButton = (Button) grid.getChildren().get(i * 2 - 1);
-            String playerName = playerNameButton.getText();
-            if (!playerName.isEmpty()) {
-                Player player = new Player(playerName);
-                players.add(player);
+                // Verifie que le champs n est pas vide
+                if (playerName.isEmpty()) {
+                    showAlert("Player's name cannot be empty.");
+                    return null;
+                }
+
+                playerNames.add(playerName);
+
+
             }
         }
+        return playerNames;
+    }
+    private void startGame() {
 
-        if (players.size() < MIN_PLAYERS) {
-            // Afficher un message d'erreur ou prendre une autre action appropriée
+        // Elle crée une nouvelle liste vide appelée players pour stocker les informations des joueurs
+        List<String> playerNames = new ArrayList<>();
+
+        playerNames=recupName();
+
+
+        // Validate the number of players
+        if (playerNames.size() < MIN_PLAYERS) {
+            showAlert("Minimum " + MIN_PLAYERS + " players are required.");
             return;
-        }*/
+        }
+
+        if (playerNames.size() > MAX_PLAYERS) {
+            showAlert("Maximum " + MAX_PLAYERS + " players are allowed.");
+            return;
+        }
 
         close();
         Deck deck = new Deck();
-        List<Player> playerList=new ArrayList<>();
+        int n=playerNames.size();
+        List<Hand> hands=créer_hand(n, deck);
+        List<Player> playerList=créer_player(playerNames,  hands);
 
-        Hand hand1= new Hand(1,deck.getValue());
-        Hand hand2= new Hand(11,deck.getValue());
-        Hand hand3= new Hand(21,deck.getValue());
-        Player player1 = new Player("Jérémy",1,1,hand1);
-        Player player2=new Player("estelle",2,11,hand2);
-        Player player3=new Player("nathan",3,21,hand3);
-        playerList.add(player1);
-        playerList.add(player3);
-        playerList.add(player2);
 
-        Board firstWindow = new Board(playerList,deck);
-        firstWindow.show();
+        Board firstWindow = new Board(playerList, deck);
+         firstWindow.show();
+        }
+
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
-
 }
 
 
