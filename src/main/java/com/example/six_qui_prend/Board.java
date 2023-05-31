@@ -32,6 +32,7 @@ public class Board extends Stage {
       //jusque ici et retirer meme le player 1
         affichecartePlateau(deck);
         //affichecarteMain(playerList.get(0));
+
         recupCartes(playerList);
         System.out.println("Hello");
         // Ajouter des cartes à la grille
@@ -42,8 +43,10 @@ public class Board extends Stage {
         List<Tuple> list_carte_player= new ArrayList<>();
         for(Player player: playerList){
             affichecarteMain(player);
-            Tuple tuple=new Tuple(player.choose_Card().getNumber(),player);
+            int value=player.choose_Card().getNumber();
+            Tuple tuple=new Tuple(value,player);
             list_carte_player.add(tuple);
+
         }
         Collections.sort(list_carte_player, new Comparator<Tuple>() {
             @Override
@@ -77,7 +80,7 @@ public class Board extends Stage {
 
         }
     }
-    public void affichecarteMain(Player player)  { //peut-etre mettre en argument le deck et le joueur pcq on les utilise
+    public void affichecarteMain(Player player)  {
         try {
             int a=1;
 

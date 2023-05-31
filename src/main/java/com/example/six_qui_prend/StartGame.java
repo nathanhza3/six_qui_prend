@@ -67,7 +67,7 @@ public class StartGame extends Stage {
 
 
     }
-    private List<Hand> créer_hand(int n, Deck deck){
+    private List<Hand> creer_hand(int n, Deck deck){
         List<Hand> hands = new ArrayList<>();
         int a=1;
         for (int i=1;i<=n;i++) {
@@ -76,17 +76,16 @@ public class StartGame extends Stage {
             a += 10;
 
         }
-        System.out.println(hands.get(0).getValue_list_i(1).getNumber());
-        System.out.println(hands.get(1).getValue_list_i(1).getNumber());
         return hands;
     }
-    private List<Player> créer_player(List<String> playerNames, List<Hand> hands){
+    private List<Player> creer_player(List<String> playerNames, List<Hand> hands){
         List<Player> players_List = new ArrayList<>();
         int a=1;
         int i=1;
         for (String name : playerNames) {
-            Player player = new Player(name,i,a,hands.get(i));
+            Player player = new Player(name,i,a,hands.get(i-1));
             players_List.add(player);
+            i+=1;
             a += 10;
         }
         return players_List;
@@ -134,8 +133,8 @@ public class StartGame extends Stage {
         close();
         Deck deck = new Deck();
         int n=playerNames.size();
-        List<Hand> hands=créer_hand(n, deck);
-        List<Player> playerList=créer_player(playerNames,  hands);
+        List<Hand> hands=creer_hand(n, deck);
+        List<Player> playerList=creer_player(playerNames,  hands);
 
 
         Board firstWindow = new Board(playerList, deck);
