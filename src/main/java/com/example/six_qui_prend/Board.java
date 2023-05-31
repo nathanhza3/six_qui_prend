@@ -58,8 +58,10 @@ public class Board extends Stage {
     }
     public void affichecarteMain(Player player)  { //peut-etre mettre en argument le deck et le joueur pcq on les utilise
         try {
+            int a=1;
 
             for (Cartes carte : player.hand.getValue_list()) {
+                a+=1;
                     //10 cartes de la main du joueur
                     //changer source et mettre la main
 
@@ -81,7 +83,7 @@ public class Board extends Stage {
 
                  */
 
-                    grid.add(imageView, carte.getNumber(), 5);
+                    grid.add(imageView, a, 5);
 
                 }
 
