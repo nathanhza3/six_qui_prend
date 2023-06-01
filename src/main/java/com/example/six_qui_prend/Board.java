@@ -28,7 +28,7 @@ public class Board extends Stage {
         grid.setPadding(new Insets(10, 10, 10, 10));
         grid.setVgap(10);
         grid.setHgap(10);
-        Scene scene = new Scene(grid, 1080, 700);
+        Scene scene = new Scene(grid, 1300, 700);
         setScene(scene);
         setTitle("distribution");
 
@@ -177,7 +177,6 @@ public class Board extends Stage {
             p+=1;
 
             if (p<=playerList.size()){
-                System.out.println("fuck");
 
             for (Cartes carte : player.hand.getValue_list()) {
                 a+=1;
@@ -275,7 +274,7 @@ public class Board extends Stage {
 
             //System.out.println(imageView.getLayoutY());
             //System.out.println(imageView.getX());
-            returncarte(carteId);
+            retourn_carte(carteId);
 
             List<Integer> liste = List.of(0, 1, 2, 3); //liste de test
             addbutton(liste, carte);
@@ -308,9 +307,9 @@ public class Board extends Stage {
     }
 
 
-    private void returncarte(String carteId ) {
-        int row = 2;
-        int column = 7;
+    private void retourn_carte(String carteId ) {
+        int row = 1;
+        int column = 8;
 
         try {
             String newImagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/backside.png";
@@ -318,18 +317,21 @@ public class Board extends Stage {
             ImageView imageView = new ImageView(newImage);
 
 
-            boolean isOccupied = false;
-            for (Node node : grid.getChildren()) {
-                if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) {
-                    isOccupied = true;
-                    break;
+            final int[] finalRow = {row};
+            final int[] finalColumn = {column};
+
+
+            while (grid.getChildren().stream().anyMatch(node -> GridPane.getRowIndex(node) == finalRow[0] && GridPane.getColumnIndex(node) == finalColumn[0])) {
+                if (finalColumn[0]>11){
+                    finalColumn[0]=8;
+                    finalRow[0]++;
+                }
+                else{
+                    finalColumn[0]++;
                 }
             }
-            if (isOccupied) {
-                column++; //mets la carte a droite
-            }
+            grid.add(imageView, finalColumn[0], finalRow[0]);
 
-            grid.add(imageView, column, row);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
