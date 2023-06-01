@@ -54,7 +54,7 @@ public class Board extends Stage {
 
          */
         affichecartePlateau(rows);
-        affichecarteMain(playerList.get(0));
+        affichecarteMain(playerList.get(0),playerList,0);
         //recupCartes(playerList, );
         System.out.println("Hello");
         // Ajouter des cartes à la grille
@@ -63,7 +63,7 @@ public class Board extends Stage {
     public void recupCartes(List<Player> playerList, String carteId, Row row){
         List<Tuple> list_carte_player= new ArrayList<>();
         for(Player player: playerList){
-            affichecarteMain(player);
+            affichecarteMain(player,playerList,0);
             Tuple tuple=new Tuple(player.choose_Card(carteId).getNumber(),player);
             list_carte_player.add(tuple);
         }
@@ -170,13 +170,14 @@ public class Board extends Stage {
 
 
     }
-    public void affichecarteMain(Player player)  {
+    public void affichecarteMain(Player player,List<Player> playerList,int p)  {
         try {
             int a=0;
             cache_main();
+            p+=1;
 
-            Player player = playerList.get(0);
-
+            if (p<=playerList.size()){
+                System.out.println("fuck");
 
             for (Cartes carte : player.hand.getValue_list()) {
                 a+=1;
@@ -239,21 +240,19 @@ public class Board extends Stage {
 
 
                 grid.add(imageView, a, 5);
-               }
-            /*
 
-            int nextPlayerIndex = (player.getNumber() + 1) % playerList.size();
-            Player nextPlayer = playerList.get(nextPlayerIndex);
-
-            if (nextPlayer != player) {
-                Button nextPlayerButton = new Button("next");
-                nextPlayerButton.setOnAction(e -> affichecarteMain((List<Player>) nextPlayer, row));
-                grid.add(nextPlayerButton, 12, 5);
             }
+            //permet de passer à l'autre joueur en appuyant
+            int nextPlayerIndex = (player.getNumber()) % playerList.size(); //Cheat code +3/20
+            Button nextPlayerButton = new Button("next");
+            int x=p;
+            nextPlayerButton.setOnAction(e -> affichecarteMain(playerList.get(nextPlayerIndex),playerList,x));
+            grid.add(nextPlayerButton, 12, 5);
 
-             */
+        }
+        }
 
-        }catch (Exception e) {
+            catch (Exception e) {
             throw new RuntimeException(e);
 
         }
