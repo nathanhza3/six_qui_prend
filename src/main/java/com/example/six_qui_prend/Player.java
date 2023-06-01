@@ -13,7 +13,6 @@ public class Player {
     private int points;
     private int id_player;
 
-
     public String getName() {
         return name;
     }
@@ -38,14 +37,15 @@ public class Player {
         this.number = number;
     }
 
-   public Cartes choose_Card(){
+   public Cartes choose_Card(String carteId){
        for (Cartes carte : this.hand.getValue_list()) {
            System.out.println("numéro de la carte "+carte.getNumber()+" nombre de tete "+carte.getNumber_head());
 
        }
        Cartes choose_card= hand.getValue_list().get(0); // ici
+       hand.getValue_list().remove(Integer.parseInt(carteId));
 
-       hand.getValue_list().remove(0); //ir
+       hand.getValue_list().remove(0); //ici
        hand.setValue_list(hand.getValue_list());
        System.out.println(hand.getValue_list().size()); // test
        //Board.selection();
