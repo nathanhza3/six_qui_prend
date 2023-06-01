@@ -11,7 +11,9 @@ public class Player {
     private ArrayList<Cartes> cartesRamasse;
     private int penalite;
 
+    private int points;
     private int id_player;
+
 
     public String getName() {
         return name;

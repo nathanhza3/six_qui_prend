@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 
 import java.util.HashMap;
 import java.util.Map;
+
 public class Board extends Stage {
     private GridPane grid;
 
@@ -117,7 +118,7 @@ public class Board extends Stage {
 
         }
     }
-    public void affichecarteMain(Player player)  { //peut-etre mettre en argument le deck et le joueur pcq on les utilise
+    public void affichecarteMain(Player player)  {
         try {
             int a=0;
             cache_main();
@@ -254,6 +255,48 @@ public class Board extends Stage {
 
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+
+    }
+//    private List<Integer> ouposer(Player player,Cartes carte){
+//        List<Integer> ouposer_list=new ArrayList<>();
+//        int value= carte.getNumber();
+//        int dc1=Integer.parseInt(rows[0].getImageViewList(rows[0].size()-1)[0]);
+//        int dc2=Integer.parseInt(rows[1].getImageViewList(rows[1].size()-1)[0]);
+//        int dc3=Integer.parseInt(rows[2].getImageViewList(rows[2].size()-1)[0]);
+//        int dc4=Integer.parseInt(rows[3].getImageViewList().get(rows[3].getImageViewList().size()-1).get);
+//
+//
+//        int i=0;
+//
+//            if(value<dc1&&value<dc2&&value<dc3&&value<dc4){
+//
+//                ouposer_list.add(1);
+//                ouposer_list.add(2);
+//                ouposer_list.add(3);
+//                ouposer_list.add(4);
+//            } else if (value>dc1&&value>dc2&&value>dc3&&value>dc4) {
+//
+//
+//            }
+//
+//        return ouposer_list;
+//    }
+    private void ifrowfull(Player player,Row row){
+        if(row.getImageViewList().size()>=6){
+
+            for(int i=0; i<=4;i++){
+                Cartes carte= new Cartes(Integer.parseInt(row.getImageViewList().get(i).getId()));
+                player.getCartesRamasse().add(carte);
+                row.getImageViewList().remove(i);
+                carte=null;
+
+
+            }
+
+            System.out.println(row.getImageViewList().size());
+
+
         }
 
     }
