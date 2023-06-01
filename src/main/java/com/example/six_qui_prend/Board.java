@@ -332,11 +332,13 @@ public class Board extends Stage {
     }
     private List<Integer> ouposer(Player player,Cartes carte){
         List<Integer> ouposer_list=new ArrayList<>();
-        int value= carte.getNumber();
+        int value = carte.getNumber();
         int dc0=Integer.parseInt(rows[0].getImageViewList().get(rows[0].getImageViewList().size()-1).getId());
         int dc1=Integer.parseInt(rows[1].getImageViewList().get(rows[1].getImageViewList().size()-1).getId());
         int dc2=Integer.parseInt(rows[2].getImageViewList().get(rows[2].getImageViewList().size()-1).getId());
         int dc3=Integer.parseInt(rows[3].getImageViewList().get(rows[3].getImageViewList().size()-1).getId());
+
+
         int i=0;
             if(value<dc0&&value<dc1&&value<dc2&&value<dc3){
 
@@ -352,6 +354,19 @@ public class Board extends Stage {
         return ouposer_list;
     }
     private void placerCarte(Row row, Cartes carte){
+        try{
+
+        String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + carte.getNumber() + ".png";
+        Image carteImage = chargeImage(imagePath);
+        ImageView imageView1 = new ImageView(carteImage);
+        imageView1.setId("imageView" + carte.getNumber());
+
+        row.getImageViewList().add(imageView1);
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+
+        }
+
 
 
     }
