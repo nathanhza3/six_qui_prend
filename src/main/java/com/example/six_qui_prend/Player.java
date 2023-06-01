@@ -9,7 +9,7 @@ public class Player {
     private int number;
     public Hand hand;
     private ArrayList<Cartes> cartesRamasse;
-
+    private int penalite;
 
     private int id_player;
 
@@ -32,6 +32,7 @@ public class Player {
     public void setName(String name) {
         this.name = name;
     }
+
 
     public void setNumber(int number) {
         this.number = number;
@@ -88,6 +89,22 @@ public class Player {
         return number_head;
     }
 
+    public ArrayList<Cartes> getCartesRamasse() {
+        return cartesRamasse;
+    }
+
+    public void setCartesRamasse(ArrayList<Cartes> cartesRamasse) {
+        this.cartesRamasse = cartesRamasse;
+    }
+
+    public int getPenalite() {
+        return penalite;
+    }
+
+    public void setPenalite(int penalite) {
+        this.penalite = penalite;
+    }
+
 
 
 
@@ -108,6 +125,8 @@ public class Player {
             return y;
         }
     }
+
+     */
 
 
 
