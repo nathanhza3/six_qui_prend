@@ -59,6 +59,7 @@ public class StartGame extends Stage {
         addPlayerButton.setOnAction(e -> addPlayerRow());
 
 
+
         startButton = new Button("Start Game");
         startButton.setOnAction(e -> startGame());
         grid.add(addPlayerButton, 2, currentRow + 1);
