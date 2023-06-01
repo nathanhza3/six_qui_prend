@@ -322,30 +322,31 @@ public class Board extends Stage {
         }
 
     }
-//    private List<Integer> ouposer(Player player,Cartes carte){
-//        List<Integer> ouposer_list=new ArrayList<>();
-//        int value= carte.getNumber();
-//        int dc1=Integer.parseInt(rows[0].getImageViewList(rows[0].size()-1)[0]);
-//        int dc2=Integer.parseInt(rows[1].getImageViewList(rows[1].size()-1)[0]);
-//        int dc3=Integer.parseInt(rows[2].getImageViewList(rows[2].size()-1)[0]);
-//        int dc4=Integer.parseInt(rows[3].getImageViewList().get(rows[3].getImageViewList().size()-1).get);
-//
-//
-//        int i=0;
-//
-//            if(value<dc1&&value<dc2&&value<dc3&&value<dc4){
-//
-//                ouposer_list.add(1);
-//                ouposer_list.add(2);
-//                ouposer_list.add(3);
-//                ouposer_list.add(4);
-//            } else if (value>dc1&&value>dc2&&value>dc3&&value>dc4) {
-//
-//
-//            }
-//
-//        return ouposer_list;
-//    }
+    private List<Integer> ouposer(Player player,Cartes carte){
+        List<Integer> ouposer_list=new ArrayList<>();
+        int value= carte.getNumber();
+        int dc0=Integer.parseInt(rows[0].getImageViewList().get(rows[0].getImageViewList().size()-1).getId());
+        int dc1=Integer.parseInt(rows[1].getImageViewList().get(rows[1].getImageViewList().size()-1).getId());
+        int dc2=Integer.parseInt(rows[2].getImageViewList().get(rows[2].getImageViewList().size()-1).getId());
+        int dc3=Integer.parseInt(rows[3].getImageViewList().get(rows[3].getImageViewList().size()-1).getId());
+        int i=0;
+            if(value<dc0&&value<dc1&&value<dc2&&value<dc3){
+
+                ouposer_list.add(0);
+                ouposer_list.add(1);
+                ouposer_list.add(2);
+                ouposer_list.add(3);
+            } else if (value>dc0&&value>dc1&&value>dc2&&value>dc3) {
+
+
+            }
+
+        return ouposer_list;
+    }
+    private void placerCarte(Row row, Cartes carte){
+
+
+    }
     private void ifrowfull(Player player,Row row){
         if(row.getImageViewList().size()>=6){
 
@@ -357,7 +358,7 @@ public class Board extends Stage {
 
 
             }
-
+            player.calculatePenalite();
             System.out.println(row.getImageViewList().size());
 
 
