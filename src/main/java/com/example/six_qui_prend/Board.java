@@ -65,7 +65,6 @@ public class Board extends Stage {
         System.out.println("Hello");
         // Ajouter des cartes à la grille
 
-
     }
     public void recupCartes(List<Player> playerList, String carteId){
         List<Tuple> list_carte_player= new ArrayList<>();
@@ -270,14 +269,12 @@ public class Board extends Stage {
             //System.out.println(imageView.getX());
             returncarte(carteId);
 
-
         }
 
     catch (Exception e) {
         throw new RuntimeException(e);
 
     }}
-
     public void cache_main(){
         try{
         for (int b = 1; b <= 10; b++) {
@@ -291,12 +288,6 @@ public class Board extends Stage {
 
     }
     }
-
-
-
-
-
-
 
     public static Image chargeImage(String url) throws Exception{
         //Image image = new Image(Objects.requireNonNull(HelloApplication.class.getResource(url)).openStream());
@@ -381,6 +372,26 @@ public class Board extends Stage {
 
         }
 
+    }
+    public void addbutton(List<Integer> liste, Row row, Cartes carte){
+        if (liste.size() == 1 && liste.contains(0)) {
+           Button addPlayerButton = new Button("->");
+           addPlayerButton.setOnAction(e -> placerCarte(row, carte ));
+           grid.add(addPlayerButton, 0,  1);
+        }else if (liste.size() == 2 && liste.containsAll(List.of(0, 1))){
+             Button addPlayerButton = new Button("->");
+             addPlayerButton.setOnAction(e -> placerCarte(row, carte ));
+             grid.add(addPlayerButton, 0,  2);
+        }else if (liste.size() == 3 && liste.containsAll(List.of(0, 1, 2))){
+              Button addPlayerButton = new Button("->");
+              addPlayerButton.setOnAction(e -> placerCarte(row, carte ));
+              grid.add(addPlayerButton, 0,  3);
+        }else if (liste.size() == 4 && liste.containsAll(List.of(0, 1, 2, 3))){
+              Button addPlayerButton = new Button("->");
+              addPlayerButton.setOnAction(e -> placerCarte(row, carte ));
+              grid.add(addPlayerButton, 0,  4);
+
+        }
     }
 
 }
