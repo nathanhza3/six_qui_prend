@@ -37,7 +37,7 @@ public class StartGame extends Stage {
         //Label playerTypeLabel = new Label("Player's Type :");
         currentRow = 2;
         addPlayerRow();
-        addPlayerRow();
+
         grid.add(playerNameLabel, 1, 0);
         //grid.add(playerTypeLabel, 2, 0);
 
@@ -53,15 +53,20 @@ public class StartGame extends Stage {
 
         TextField playerNameField = new TextField();
         playerNameField.setPromptText("Joueur " + (currentRow - 1));
+        grid.add(playerNameField, 1, currentRow);
+
         addPlayerButton = new Button("+");
         addPlayerButton.setOnAction(e -> addPlayerRow());
+
+
         startButton = new Button("Start Game");
         startButton.setOnAction(e -> startGame());
-
-
-        grid.add(playerNameField, 1, currentRow);
         grid.add(addPlayerButton, 2, currentRow + 1);
+
         grid.add(startButton, 1, currentRow + 1);
+
+
+
 
         currentRow++;
 
