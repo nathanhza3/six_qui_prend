@@ -340,24 +340,35 @@ public class Board extends Stage {
 
     }
     private List<Integer> ouposer(Player player,Cartes carte){
+        List<Tuple2> tuple2List=new ArrayList<>();
         List<Integer> ouposer_list=new ArrayList<>();
         int value = carte.getNumber();
         int dc0=Integer.parseInt(rows[0].getImageViewList().get(rows[0].getImageViewList().size()-1).getId());
+        Tuple2 tuple0= new Tuple2(0,dc0);
+        tuple2List.add(tuple0);
         int dc1=Integer.parseInt(rows[1].getImageViewList().get(rows[1].getImageViewList().size()-1).getId());
+        Tuple2 tuple1=new Tuple2(1,dc1);
+        tuple2List.add(tuple1);
         int dc2=Integer.parseInt(rows[2].getImageViewList().get(rows[2].getImageViewList().size()-1).getId());
+        Tuple2 tuple2=new Tuple2(2,dc2);
+        tuple2List.add(tuple2);
         int dc3=Integer.parseInt(rows[3].getImageViewList().get(rows[3].getImageViewList().size()-1).getId());
-
-
-        int i=0;
-            if(value<dc0&&value<dc1&&value<dc2&&value<dc3){
-
+        Tuple2 tuple3=new Tuple2(3,dc3);
+        tuple2List.add(tuple3);
+        tuple2List.sort(Comparator.comparingInt(Tuple2::getValue));
+            if(value<tuple2List.get(0).getValue()){
                 ouposer_list.add(0);
                 ouposer_list.add(1);
                 ouposer_list.add(2);
                 ouposer_list.add(3);
-            } else if (value>dc0&&value>dc1&&value>dc2&&value>dc3) {
-
-
+            } else if (value>tuple2List.get(3).getValue()) {
+                ouposer_list.add(tuple2List.get(3).getRow());
+            } else if (value>tuple2List.get(2).getValue()) {
+                ouposer_list.add(tuple2List.get(2).getRow());
+            }else if (value>tuple2List.get(1).getValue()) {
+                ouposer_list.add(tuple2List.get(1).getRow());
+            }else if (value>tuple2List.get(0).getValue()) {
+                ouposer_list.add(tuple2List.get(0).getRow());
             }
 
         return ouposer_list;
