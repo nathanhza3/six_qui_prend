@@ -1,6 +1,7 @@
 package com.example.six_qui_prend;
 
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -57,16 +58,58 @@ public class Board extends Stage {
 
     public void affichecartePlateau(Deck deck)  {
         try {
-            for (int i = 100; i <= 103; i++) {
-                //4 cartes du début du jeu
-                //int a = Cartes[i];
-                //choper la valeur de la 101ème carte du deck
-                String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + deck.getValue()[i].getNumber() + ".png";
-                Image carte = chargeImage(imagePath);
-                ImageView imageView = new ImageView(carte);
-                imageView.setId("imageView" +deck.getValue()[i].getNumber());
-                grid.add(imageView, 0, i - 100); // ici j'ai modifié j'ai mis 100 avant il yavait 101 jsp trop pk
-            }
+
+            //création affichage et ajout à la row1 de la 1er carte
+            Cartes carte1 = deck.getValue()[100];
+            String imagePath1 = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + carte1.getNumber() + ".png";
+            Image carteImage1 = chargeImage(imagePath1);
+            ImageView imageView1 = new ImageView(carteImage1);
+            imageView1.setId("imageView" + carte1.getNumber());
+            Row row1 = new Row();
+            row1.getImageViewList().add(imageView1);
+            grid.add(imageView1, 0, 0);
+
+            Cartes carte2 = deck.getValue()[101];
+            String imagePath2 = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + carte2.getNumber() + ".png";
+            Image carteImage2 = chargeImage(imagePath2);
+            ImageView imageView2 = new ImageView(carteImage2);
+            imageView2.setId("imageView" + carte2.getNumber());
+            Row row2 = new Row();
+            row2.getImageViewList().add(imageView2);
+            grid.add(imageView2, 0, 1);
+
+            Cartes carte3 = deck.getValue()[102];
+            String imagePath3 = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + carte3.getNumber() + ".png";
+            Image carteImage3 = chargeImage(imagePath3);
+            ImageView imageView3 = new ImageView(carteImage3);
+            imageView3.setId("imageView" + carte3.getNumber());
+            Row row3 = new Row();
+            row3.getImageViewList().add(imageView3);
+            grid.add(imageView3, 0, 2);
+
+            Cartes carte4 = deck.getValue()[103];
+            String imagePath4 = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + carte4.getNumber() + ".png";
+            Image carteImage4 = chargeImage(imagePath4);
+            ImageView imageView4 = new ImageView(carteImage4);
+            imageView4.setId("imageView" + carte4.getNumber());
+            Row row4 = new Row();
+            row4.getImageViewList().add(imageView4);
+            grid.add(imageView4, 0, 3);
+
+            Row[] rows = new Row[4];
+            rows[0] = row1;
+            rows[1] = row2;
+            rows[2] = row3;
+            rows[3] = row4;
+
+            /*test
+            System.out.println(row1.getImageViewList().get(0));
+            System.out.println(row2.getImageViewList().get(0));
+            System.out.println(row3.getImageViewList().get(0));
+            System.out.println(row4.getImageViewList().get(0));
+            System.out.println(rows[1].getImageViewList().get(0));
+
+             */
 
         }catch (Exception e) {
             throw new RuntimeException(e);
@@ -190,12 +233,28 @@ public class Board extends Stage {
         addPlayerButton.setOnAction(e ->affichecarteMain(player) );
     }
 
-    private void returncarte(String carteId) {
+    private void returncarte(String carteId ) {
+        int row = 2;
+        int column = 6;
+
         try {
             String newImagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/backside.png";
             Image newImage = chargeImage(newImagePath);
             ImageView imageView = new ImageView(newImage);
-            grid.add(imageView, 2, 4);
+
+
+            boolean isOccupied = false;
+            for (Node node : grid.getChildren()) {
+                if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) {
+                    isOccupied = true;
+                    break;
+                }
+            }
+            if (isOccupied) {
+                column++; //mets la carte a droite
+            }
+
+            grid.add(imageView, column, row);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
