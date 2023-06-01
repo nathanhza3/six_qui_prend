@@ -22,9 +22,14 @@ public class Board extends Stage {
     private GridPane grid;
     private Row[] rows = new Row[4];
 
+    private List<Cartes> cartesList;
+
+
+
     public  Board(List<Player> playerList,Deck deck) {
 
         grid = new GridPane();
+        cartesList=new ArrayList<>();
         grid.setPadding(new Insets(10, 10, 10, 10));
         grid.setVgap(10);
         grid.setHgap(10);
@@ -55,8 +60,9 @@ public class Board extends Stage {
          */
         affichecartePlateau(rows);
         affichecarteMain(playerList.get(0),playerList,0);
+
+
         //recupCartes(playerList, );
-        System.out.println("Hello");
         // Ajouter des cartes à la grille
 
     }
@@ -215,7 +221,8 @@ public class Board extends Stage {
                 Image card = chargeImage(imagePath);
                 ImageView imageView = new ImageView(card);
                 imageView.setId("" + carte.getNumber());
-                imageView.setOnMouseClicked(event -> selection(imageView, carte));
+                imageView.setOnMouseClicked(event -> selection(imageView, carte,player));
+
                 //imageView.setOnMouseClicked(event2 -> player.choose_Card());
 
 
@@ -248,7 +255,25 @@ public class Board extends Stage {
             nextPlayerButton.setOnAction(e -> affichecarteMain(playerList.get(nextPlayerIndex),playerList,x));
             grid.add(nextPlayerButton, 12, 5);
 
-        }
+        } else if(p>playerList.size())  {
+                List<Tuple> tupleList=quijoue(playerList,cartesList);
+
+                for(int j=0;j<tupleList.size();j++) {
+
+                    Cartes carte = new Cartes(tupleList.get(j).getCarte_value());
+
+                    List<Integer> ouposer_list = ouposer(tupleList.get(j).getPlayer(), carte);
+                    System.out.println(ouposer_list.size());
+
+                    addbutton(ouposer_list,carte);
+                    //ifrowfull(tupleList.get(j).getPlayer(),rows[ouposer_list.get(0)]);
+                    //ifcarteinf(tupleList.get(j).getPlayer(),rows[ouposer_list.get(0)]);
+                    //System.out.println(ouposer_list.get(0));
+
+                }
+
+            }
+
         }
 
             catch (Exception e) {
@@ -257,7 +282,7 @@ public class Board extends Stage {
         }
     }
 
-    public void selection(ImageView imageView, Cartes carte) {
+    public void selection(ImageView imageView, Cartes carte,Player player) {
         try {
             System.out.println(imageView);
 
@@ -276,8 +301,11 @@ public class Board extends Stage {
             //System.out.println(imageView.getX());
             retourn_carte(carteId);
 
-            List<Integer> liste = List.of(0, 1, 2, 3); //liste de test
-            addbutton(liste, carte);
+            player.hand.getValue_list().remove(carte);
+            this.cartesList.add(carte);
+
+
+
         }
 
     catch (Exception e) {
@@ -342,18 +370,40 @@ public class Board extends Stage {
         List<Tuple2> tuple2List=new ArrayList<>();
         List<Integer> ouposer_list=new ArrayList<>();
         int value = carte.getNumber();
-        int dc0=Integer.parseInt(rows[0].getImageViewList().get(rows[0].getImageViewList().size()-1).getId());
+//        int dc0=Integer.parseInt(rows[0].getImageViewList().get(rows[0].getImageViewList().size()-1).getId());
+//        Tuple2 tuple0= new Tuple2(0,dc0);
+//        tuple2List.add(tuple0);
+//        int dc1=Integer.parseInt(rows[1].getImageViewList().get(rows[1].getImageViewList().size()-1).getId());
+//        Tuple2 tuple1=new Tuple2(1,dc1);
+//        tuple2List.add(tuple1);
+//        int dc2=Integer.parseInt(rows[2].getImageViewList().get(rows[2].getImageViewList().size()-1).getId());
+//        Tuple2 tuple2=new Tuple2(2,dc2);
+//        tuple2List.add(tuple2);
+//        int dc3=Integer.parseInt(rows[3].getImageViewList().get(rows[3].getImageViewList().size()-1).getId());
+//        Tuple2 tuple3=new Tuple2(3,dc3);
+//        tuple2List.add(tuple3);
+        String dc0_string = rows[0].getImageViewList().get(rows[0].getImageViewList().size()-1).getId();
+        String numberString0 = dc0_string.substring("imageView".length());
+        int dc0 = Integer.parseInt(numberString0);
         Tuple2 tuple0= new Tuple2(0,dc0);
         tuple2List.add(tuple0);
-        int dc1=Integer.parseInt(rows[1].getImageViewList().get(rows[1].getImageViewList().size()-1).getId());
-        Tuple2 tuple1=new Tuple2(1,dc1);
+        String dc1_string = rows[1].getImageViewList().get(rows[1].getImageViewList().size()-1).getId();
+        String numberString1 = dc1_string.substring("imageView".length());
+        int dc1 = Integer.parseInt(numberString1);
+        Tuple2 tuple1= new Tuple2(1,dc1);
         tuple2List.add(tuple1);
-        int dc2=Integer.parseInt(rows[2].getImageViewList().get(rows[2].getImageViewList().size()-1).getId());
+        String dc2_string = rows[2].getImageViewList().get(rows[2].getImageViewList().size()-1).getId();
+        String numberString2 = dc2_string.substring("imageView".length());
+        int dc2 = Integer.parseInt(numberString2);
         Tuple2 tuple2=new Tuple2(2,dc2);
         tuple2List.add(tuple2);
-        int dc3=Integer.parseInt(rows[3].getImageViewList().get(rows[3].getImageViewList().size()-1).getId());
+        String dc3_string = rows[3].getImageViewList().get(rows[3].getImageViewList().size()-1).getId();
+        String numberString3 = dc3_string.substring("imageView".length());
+        int dc3 = Integer.parseInt(numberString3);
         Tuple2 tuple3=new Tuple2(3,dc3);
         tuple2List.add(tuple3);
+
+
         tuple2List.sort(Comparator.comparingInt(Tuple2::getValue));
             if(value<tuple2List.get(0).getValue()){
                 ouposer_list.add(0);
@@ -451,6 +501,7 @@ public class Board extends Stage {
         int i=0;
         for(Player player:playerList){
             Tuple tuple= new Tuple(cartesList.get(i).getNumber(),player);
+            tupleList.add(tuple);
             i+=1;
         }
         tupleList.sort(Comparator.comparingInt(Tuple::getCarte_value));
@@ -462,6 +513,32 @@ public class Board extends Stage {
     private void clearGrid() {  //permet
         grid.getChildren().clear();
     }
+    private void ifcarteinf(Player player,Row row){
+        String value_string1 = row.getImageViewList().get(row.getImageViewList().size()-2).getId();
+        String numberString1 = value_string1.substring("imageView".length());
+        int value_n_1 = Integer.parseInt(numberString1);
+        String value_string2 = row.getImageViewList().get(row.getImageViewList().size()-1).getId();
+        String numberString2 = value_string2.substring("imageView".length());
+        int value_n = Integer.parseInt(numberString2);
+        if(value_n<value_n_1){
+
+
+            for(int i=0; i<=row.getImageViewList().size()-2;i++){
+                Cartes carte= new Cartes(Integer.parseInt(row.getImageViewList().get(i).getId()));
+                player.getCartesRamasse().add(carte);
+                row.getImageViewList().remove(i);
+                carte=null;
+
+
+            }
+            player.calculatePenalite();
+            System.out.println(row.getImageViewList().size());
+
+
+        }
+
+    }
+
 
 
 
