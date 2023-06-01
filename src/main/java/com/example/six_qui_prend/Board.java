@@ -459,6 +459,10 @@ public class Board extends Stage {
 
     }
 
+    private void clearGrid() {  //permet
+        grid.getChildren().clear();
+    }
+
 
 
 
