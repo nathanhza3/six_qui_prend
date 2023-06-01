@@ -1,5 +1,5 @@
 package com.example.six_qui_prend;
-import javafx.application.Application;
+
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -12,9 +12,9 @@ import java.util.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
+import javafx.scene.control.Button;
 
-import java.util.HashMap;
-import java.util.Map;
+
 public class Board extends Stage {
     private GridPane grid;
 
@@ -28,21 +28,21 @@ public class Board extends Stage {
         setScene(scene);
         setTitle("distribution");
 
-        // ca ne doit pas être ici c'est pour tester
+       // ca ne doit pas être ici c'est pour tester
         //jusque ici et retirer meme le player 1
         affichecartePlateau(deck);
         affichecarteMain(playerList.get(0));
-        recupCartes(playerList);
+        //recupCartes(playerList, );
         System.out.println("Hello");
         // Ajouter des cartes à la grille
 
 
     }
-    public void recupCartes(List<Player> playerList){
+    public void recupCartes(List<Player> playerList, String carteId){
         List<Tuple> list_carte_player= new ArrayList<>();
         for(Player player: playerList){
             affichecarteMain(player);
-            Tuple tuple=new Tuple(player.choose_Card().getNumber(),player);
+            Tuple tuple=new Tuple(player.choose_Card(carteId).getNumber(),player);
             list_carte_player.add(tuple);
         }
         Collections.sort(list_carte_player, new Comparator<Tuple>() {
@@ -114,7 +114,7 @@ public class Board extends Stage {
                 String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + carte.getNumber() + ".png";
                 Image card = chargeImage(imagePath);
                 ImageView imageView = new ImageView(card);
-                imageView.setId(""+carte.getNumber());
+                imageView.setId("" + carte.getNumber());
                 imageView.setOnMouseClicked(event -> selection(imageView));
                 //imageView.setOnMouseClicked(event2 -> player.choose_Card());
 
@@ -122,10 +122,7 @@ public class Board extends Stage {
 
 
                 grid.add(imageView, a, 5);
-
-
-
-                }
+               }
 
         }catch (Exception e) {
             throw new RuntimeException(e);
@@ -137,15 +134,20 @@ public class Board extends Stage {
         try {
             System.out.println(imageView);
 
+            String carteId = imageView.getId();
+            System.out.println("Mon id est :"+carteId);
+
             String newImagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/blanc.png";
             Image newImage = chargeImage(newImagePath);
 
             imageView.setImage(newImage);
 
-            //double x = imageView.getLayoutX();
-            //double y = imageView.getLayoutY();
+            double x = imageView.getLayoutX();
+            double y = imageView.getLayoutY();
+
             //System.out.println(imageView.getLayoutY());
             //System.out.println(imageView.getX());
+            returncarte(carteId);
 
 
         }
@@ -182,4 +184,23 @@ public class Board extends Stage {
         Image image = new Image(file.toURI().toString());
         return image;
     }
+
+    private void nextplayer(Player player){
+        Button addPlayerButton = new Button("Next Player");
+        addPlayerButton.setOnAction(e ->affichecarteMain(player) );
+    }
+
+    private void returncarte(String carteId) {
+        try {
+            String newImagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/backside.png";
+            Image newImage = chargeImage(newImagePath);
+            ImageView imageView = new ImageView(newImage);
+            grid.add(imageView, 2, 4);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
 }
