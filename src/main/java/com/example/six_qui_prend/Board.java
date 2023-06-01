@@ -97,7 +97,7 @@ public class Board extends Stage {
             this.rows[0]=row1;
             row1.getImageViewList().add(imageView1);
 
-            grid.add(row1.getImageViewList().get(0), 0, 0);
+            grid.add(row1.getImageViewList().get(0), 1, 0);
 
             Cartes carte2 = deck.getValue()[101];
             String imagePath2 = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + carte2.getNumber() + ".png";
@@ -107,7 +107,7 @@ public class Board extends Stage {
             Row row2 = new Row();
             this.rows[1]=row2;
             row2.getImageViewList().add(imageView2);
-            grid.add(row2.getImageViewList().get(0), 0, 1);
+            grid.add(row2.getImageViewList().get(0), 1, 1);
 
             Cartes carte3 = deck.getValue()[102];
             String imagePath3 = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + carte3.getNumber() + ".png";
@@ -117,7 +117,7 @@ public class Board extends Stage {
             Row row3 = new Row();
             this.rows[2]=row3;
             row3.getImageViewList().add(imageView3);
-            grid.add(row3.getImageViewList().get(0), 0, 2);
+            grid.add(row3.getImageViewList().get(0), 1, 2);
 
             Cartes carte4 = deck.getValue()[103];
             String imagePath4 = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + carte4.getNumber() + ".png";
@@ -127,7 +127,7 @@ public class Board extends Stage {
             Row row4 = new Row();
             this.rows[3]=row4;
             row4.getImageViewList().add(imageView4);
-            grid.add(row4.getImageViewList().get(0), 0, 3);
+            grid.add(row4.getImageViewList().get(0), 1, 3);
 
 
 
@@ -154,21 +154,21 @@ public class Board extends Stage {
 
         grid.getChildren().clear();
         for(int i=0;i<=f;i++){
-            grid.add(rows[0].getImageViewList().get(i), i, 0);
+            grid.add(rows[0].getImageViewList().get(i), i+1, 0);
 
         }
         for (int i=0;i<=d;i++){
-            grid.add(rows[1].getImageViewList().get(i), i, 1);
+            grid.add(rows[1].getImageViewList().get(i), i+1, 1);
 
 
 
         }
         for (int i=0;i<=p;i++){
-            grid.add(rows[2].getImageViewList().get(i), i, 2);
+            grid.add(rows[2].getImageViewList().get(i), i+1, 2);
 
         }
         for (int i=0;i<=d;i++){
-            grid.add(rows[3].getImageViewList().get(i), i, 3);
+            grid.add(rows[3].getImageViewList().get(i), i+1, 3);
 
         }
 
@@ -221,6 +221,23 @@ public class Board extends Stage {
                 imageView.setId("" + carte.getNumber());
                 imageView.setOnMouseClicked(event -> selection(imageView));
                 //imageView.setOnMouseClicked(event2 -> player.choose_Card());
+
+
+
+
+
+                /*
+                int currentPlayerIndex = players_List.indexOf(player);
+                int nextPlayerIndex = (currentPlayerIndex + 1) % players_List.size();
+                Player nextPlayer = players_List.get(nextPlayerIndex);
+                Button nextPlayerButton = new Button("Next Player");
+                nextPlayerButton.setOnAction(e -> affichecarteMain(nextPlayer));
+                grid.add(nextPlayerButton, 7, 7);
+
+                 */
+
+
+
 
 
 
@@ -296,7 +313,7 @@ public class Board extends Stage {
 
     private void returncarte(String carteId ) {
         int row = 2;
-        int column = 6;
+        int column = 7;
 
         try {
             String newImagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/backside.png";
