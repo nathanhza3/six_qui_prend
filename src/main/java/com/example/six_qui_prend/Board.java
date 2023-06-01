@@ -16,8 +16,10 @@ import java.util.Collections;
 import javafx.scene.control.Button;
 
 
+
 public class Board extends Stage {
     private GridPane grid;
+    private Row[] rows = new Row[4];
 
     public  Board(List<Player> playerList,Deck deck) {
 
@@ -31,7 +33,32 @@ public class Board extends Stage {
 
        // ca ne doit pas être ici c'est pour tester
         //jusque ici et retirer meme le player 1
-        affichecartePlateau(deck);
+        affichecartePlateau_debut(deck);
+
+
+        /* TEst pour montrer qu'on ait pas 0
+
+        Cartes carte1 = deck.getValue()[69];
+        try {
+            ImageView imageView1 = new ImageView(chargeImage("src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + carte1.getNumber() + ".png"));
+            imageView1.setId("imageView" + carte1.getNumber());
+
+
+            rows[0].getImageViewList().add(imageView1);
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+
+        }
+
+         */
+        affichecartePlateau(rows);
+
+
+
+
+
+
         affichecarteMain(playerList.get(0));
         //recupCartes(playerList, );
         System.out.println("Hello");
@@ -56,7 +83,7 @@ public class Board extends Stage {
 
     }
 
-    public void affichecartePlateau(Deck deck)  {
+    public void affichecartePlateau_debut(Deck deck)  {
         try {
 
             //création affichage et ajout à la row1 de la 1er carte
@@ -66,8 +93,10 @@ public class Board extends Stage {
             ImageView imageView1 = new ImageView(carteImage1);
             imageView1.setId("imageView" + carte1.getNumber());
             Row row1 = new Row();
+            this.rows[0]=row1;
             row1.getImageViewList().add(imageView1);
-            grid.add(imageView1, 0, 0);
+
+            grid.add(row1.getImageViewList().get(0), 0, 0);
 
             Cartes carte2 = deck.getValue()[101];
             String imagePath2 = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + carte2.getNumber() + ".png";
@@ -75,8 +104,9 @@ public class Board extends Stage {
             ImageView imageView2 = new ImageView(carteImage2);
             imageView2.setId("imageView" + carte2.getNumber());
             Row row2 = new Row();
+            this.rows[1]=row2;
             row2.getImageViewList().add(imageView2);
-            grid.add(imageView2, 0, 1);
+            grid.add(row2.getImageViewList().get(0), 0, 1);
 
             Cartes carte3 = deck.getValue()[102];
             String imagePath3 = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + carte3.getNumber() + ".png";
@@ -84,8 +114,9 @@ public class Board extends Stage {
             ImageView imageView3 = new ImageView(carteImage3);
             imageView3.setId("imageView" + carte3.getNumber());
             Row row3 = new Row();
+            this.rows[2]=row3;
             row3.getImageViewList().add(imageView3);
-            grid.add(imageView3, 0, 2);
+            grid.add(row3.getImageViewList().get(0), 0, 2);
 
             Cartes carte4 = deck.getValue()[103];
             String imagePath4 = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + carte4.getNumber() + ".png";
@@ -93,14 +124,12 @@ public class Board extends Stage {
             ImageView imageView4 = new ImageView(carteImage4);
             imageView4.setId("imageView" + carte4.getNumber());
             Row row4 = new Row();
+            this.rows[3]=row4;
             row4.getImageViewList().add(imageView4);
-            grid.add(imageView4, 0, 3);
+            grid.add(row4.getImageViewList().get(0), 0, 3);
 
-            Row[] rows = new Row[4];
-            rows[0] = row1;
-            rows[1] = row2;
-            rows[2] = row3;
-            rows[3] = row4;
+
+
 
             /*test
             System.out.println(row1.getImageViewList().get(0));
@@ -115,6 +144,37 @@ public class Board extends Stage {
             throw new RuntimeException(e);
 
         }
+    }
+    public void affichecartePlateau(Row[] rows){
+        int f=rows[0].getImageViewList().size()-1;
+        int d=rows[1].getImageViewList().size()-1;
+        int p=rows[2].getImageViewList().size()-1;
+        int s=rows[3].getImageViewList().size()-1;
+
+        grid.getChildren().clear();
+        for(int i=0;i<=f;i++){
+            grid.add(rows[0].getImageViewList().get(i), i, 0);
+
+        }
+        for (int i=0;i<=d;i++){
+            grid.add(rows[1].getImageViewList().get(i), i, 1);
+
+
+
+        }
+        for (int i=0;i<=p;i++){
+            grid.add(rows[2].getImageViewList().get(i), i, 2);
+
+        }
+        for (int i=0;i<=d;i++){
+            grid.add(rows[3].getImageViewList().get(i), i, 3);
+
+        }
+
+
+
+
+
     }
     public void affichecarteMain(Player player)  { //peut-etre mettre en argument le deck et le joueur pcq on les utilise
         try {
