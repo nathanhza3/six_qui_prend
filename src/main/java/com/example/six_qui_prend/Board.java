@@ -400,6 +400,7 @@ public class Board extends Stage {
 
     }
     public void addbutton(List<Integer> liste, Row row, Cartes carte){
+
         if (liste.size() == 1 && liste.contains(0)) {
            Button addPlayerButton = new Button("->");
            addPlayerButton.setOnAction(e -> placerCarte(row, carte ));
@@ -419,5 +420,18 @@ public class Board extends Stage {
 
         }
     }
+    private List<Tuple> quijoue(List<Player> playerList,List<Cartes> cartesList){
+        List<Tuple> tupleList=new ArrayList<>();
+        int i=0;
+        for(Player player:playerList){
+            Tuple tuple= new Tuple(cartesList.get(i).getNumber(),player);
+            i+=1;
+        }
+        tupleList.sort(Comparator.comparingInt(Tuple::getCarte_value));
+
+        return tupleList;
+
+    }
 
 }
+
