@@ -171,10 +171,12 @@ public class Board extends Stage {
 
 
     }
-    public void affichecarteMain(Player player, Row row)  { //peut-etre mettre en argument le deck et le joueur pcq on les utilise
+    public void affichecarteMain(List<Player> playerList, Row row)  { //peut-etre mettre en argument le deck et le joueur pcq on les utilise
         try {
             int a=0;
             cache_main();
+
+            Player player = playerList.get(0);
 
 
             for (Cartes carte : player.hand.getValue_list()) {
@@ -239,6 +241,18 @@ public class Board extends Stage {
 
                 grid.add(imageView, a, 5);
                }
+            /*
+
+            int nextPlayerIndex = (player.getNumber() + 1) % playerList.size();
+            Player nextPlayer = playerList.get(nextPlayerIndex);
+
+            if (nextPlayer != player) {
+                Button nextPlayerButton = new Button("next");
+                nextPlayerButton.setOnAction(e -> affichecarteMain((List<Player>) nextPlayer, row));
+                grid.add(nextPlayerButton, 12, 5);
+            }
+
+             */
 
         }catch (Exception e) {
             throw new RuntimeException(e);
