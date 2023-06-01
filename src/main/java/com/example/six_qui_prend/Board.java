@@ -176,6 +176,7 @@ public class Board extends Stage {
             int a=0;
             cache_main();
 
+
             for (Cartes carte : player.hand.getValue_list()) {
                 a+=1;
 
