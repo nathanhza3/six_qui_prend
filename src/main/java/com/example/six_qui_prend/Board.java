@@ -14,7 +14,6 @@ import java.util.Collections;
 
 import java.util.HashMap;
 import java.util.Map;
-
 public class Board extends Stage {
     private GridPane grid;
 
@@ -29,7 +28,7 @@ public class Board extends Stage {
         setTitle("distribution");
 
         // ca ne doit pas être ici c'est pour tester
-      //jusque ici et retirer meme le player 1
+        //jusque ici et retirer meme le player 1
         affichecartePlateau(deck);
         //affichecarteMain(playerList.get(0));
 
@@ -62,17 +61,13 @@ public class Board extends Stage {
         try {
             for (int i = 100; i <= 103; i++) {
                 //4 cartes du début du jeu
-
                 //int a = Cartes[i];
                 //choper la valeur de la 101ème carte du deck
-
-
                 String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + deck.getValue()[i].getNumber() + ".png";
                 Image carte = chargeImage(imagePath);
                 ImageView imageView = new ImageView(carte);
                 imageView.setId("imageView" +deck.getValue()[i].getNumber());
                 grid.add(imageView, 0, i - 100); // ici j'ai modifié j'ai mis 100 avant il yavait 101 jsp trop pk
-
             }
 
         }catch (Exception e) {
@@ -83,13 +78,7 @@ public class Board extends Stage {
     public void affichecarteMain(Player player)  {
         try {
             int a=0;
-            for (int b = 1; b <= 10; b++) {
-                String newImagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/blanc.png";
-                Image newImage = chargeImage(newImagePath);
-                ImageView blanc = new ImageView(newImage);
-                grid.add(blanc, b, 5);
-
-            }
+            cache_main();
 
             for (Cartes carte : player.hand.getValue_list()) {
                 a+=1;
@@ -111,6 +100,7 @@ public class Board extends Stage {
                 ImageView imageView = new ImageView(card);
                 imageView.setId(""+carte.getNumber());
                 imageView.setOnMouseClicked(event -> selection(imageView));
+                //imageView.setOnMouseClicked(event2 -> player.choose_Card());
 
 
                 grid.add(imageView, a, 5);
@@ -146,6 +136,20 @@ public class Board extends Stage {
         throw new RuntimeException(e);
 
     }}
+
+    public void cache_main(){
+        try{
+        for (int b = 1; b <= 10; b++) {
+            String newImagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/blanc.png";
+            Image newImage = chargeImage(newImagePath);
+            ImageView blanc = new ImageView(newImage);
+            grid.add(blanc, b, 5);
+        }
+    }catch (Exception e) {
+        throw new RuntimeException(e);
+
+    }
+    }
 
 
 

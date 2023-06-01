@@ -138,8 +138,8 @@ public class StartGame extends Stage {
 
 
         Board firstWindow = new Board(playerList, deck);
-         firstWindow.show();
-        }
+        firstWindow.show();
+    }
 
 
     private void showAlert(String message) {
@@ -148,13 +148,5 @@ public class StartGame extends Stage {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-    }
 }
-
-
-
-
-
-
-
-
+}
