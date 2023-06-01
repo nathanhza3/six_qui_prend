@@ -21,6 +21,7 @@ import java.util.Map;
 public class Board extends Stage {
     private GridPane grid;
     private Row[] rows = new Row[4];
+    Row row;
 
     public  Board(List<Player> playerList,Deck deck) {
 
@@ -54,22 +55,16 @@ public class Board extends Stage {
 
          */
         affichecartePlateau(rows);
-
-
-
-
-
-
-        affichecarteMain(playerList.get(0));
+        affichecarteMain(playerList.get(0), row);
         //recupCartes(playerList, );
         System.out.println("Hello");
         // Ajouter des cartes à la grille
 
     }
-    public void recupCartes(List<Player> playerList, String carteId){
+    public void recupCartes(List<Player> playerList, String carteId, Row row){
         List<Tuple> list_carte_player= new ArrayList<>();
         for(Player player: playerList){
-            affichecarteMain(player);
+            affichecarteMain(player, row);
             Tuple tuple=new Tuple(player.choose_Card(carteId).getNumber(),player);
             list_carte_player.add(tuple);
         }
@@ -176,7 +171,7 @@ public class Board extends Stage {
 
 
     }
-    public void affichecarteMain(Player player)  { //peut-etre mettre en argument le deck et le joueur pcq on les utilise
+    public void affichecarteMain(Player player, Row row)  { //peut-etre mettre en argument le deck et le joueur pcq on les utilise
         try {
             int a=0;
             cache_main();
@@ -218,7 +213,7 @@ public class Board extends Stage {
                 Image card = chargeImage(imagePath);
                 ImageView imageView = new ImageView(card);
                 imageView.setId("" + carte.getNumber());
-                imageView.setOnMouseClicked(event -> selection(imageView));
+                imageView.setOnMouseClicked(event -> selection(imageView, row, carte));
                 //imageView.setOnMouseClicked(event2 -> player.choose_Card());
 
 
@@ -250,7 +245,7 @@ public class Board extends Stage {
         }
     }
 
-    public void selection(ImageView imageView) {
+    public void selection(ImageView imageView, Row row, Cartes carte) {
         try {
             System.out.println(imageView);
 
@@ -269,6 +264,8 @@ public class Board extends Stage {
             //System.out.println(imageView.getX());
             returncarte(carteId);
 
+            List<Integer> liste = List.of(0, 1, 2, 3); //liste de test
+            addbutton(liste, row, carte);
         }
 
     catch (Exception e) {
@@ -297,10 +294,6 @@ public class Board extends Stage {
         return image;
     }
 
-    private void nextplayer(Player player){
-        Button addPlayerButton = new Button("Next Player");
-        addPlayerButton.setOnAction(e ->affichecarteMain(player) );
-    }
 
     private void returncarte(String carteId ) {
         int row = 2;
@@ -388,25 +381,46 @@ public class Board extends Stage {
         }
 
     }
+
+    
     public void addbutton(List<Integer> liste, Row row, Cartes carte){
         if (liste.size() == 1 && liste.contains(0)) {
            Button addPlayerButton = new Button("->");
            addPlayerButton.setOnAction(e -> placerCarte(row, carte ));
-           grid.add(addPlayerButton, 0,  1);
-        }else if (liste.size() == 2 && liste.containsAll(List.of(0, 1))){
+           grid.add(addPlayerButton, 0,  0);
+        }else if (liste.size() == 1 && liste.contains(1)){
              Button addPlayerButton = new Button("->");
              addPlayerButton.setOnAction(e -> placerCarte(row, carte ));
-             grid.add(addPlayerButton, 0,  2);
-        }else if (liste.size() == 3 && liste.containsAll(List.of(0, 1, 2))){
+             grid.add(addPlayerButton, 0,  1);
+        }else if (liste.size() == 1 && liste.contains(2)){
+              Button addPlayerButton = new Button("->");
+              addPlayerButton.setOnAction(e -> placerCarte(row, carte ));
+              grid.add(addPlayerButton, 0,  2);
+        }else if (liste.size() == 1 && liste.contains(3)){
               Button addPlayerButton = new Button("->");
               addPlayerButton.setOnAction(e -> placerCarte(row, carte ));
               grid.add(addPlayerButton, 0,  3);
-        }else if (liste.size() == 4 && liste.containsAll(List.of(0, 1, 2, 3))){
-              Button addPlayerButton = new Button("->");
-              addPlayerButton.setOnAction(e -> placerCarte(row, carte ));
-              grid.add(addPlayerButton, 0,  4);
 
+        } else if (liste.size() == 4 && liste.containsAll(List.of(0, 1, 2, 3))) {
+              Button addPlayerButton1 = new Button("->");
+              addPlayerButton1.setOnAction(e -> placerCarte(row, carte ));
+              grid.add(addPlayerButton1, 0,  0);
+
+              Button addPlayerButton2 = new Button("->");
+              addPlayerButton2.setOnAction(e -> placerCarte(row, carte ));
+              grid.add(addPlayerButton2, 0,  1);
+
+              Button addPlayerButton3 = new Button("->");
+              addPlayerButton3.setOnAction(e -> placerCarte(row, carte ));
+              grid.add(addPlayerButton3, 0,  2);
+
+              Button addPlayerButton4 = new Button("->");
+              addPlayerButton4.setOnAction(e -> placerCarte(row, carte ));
+              grid.add(addPlayerButton4, 0,  3);
         }
     }
+
+
+
 
 }
