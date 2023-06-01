@@ -266,7 +266,10 @@ public class Board extends Stage {
                     System.out.println(ouposer_list.size());
 
                     addbutton(ouposer_list,carte);
+                    //ifrowfull(tupleList.get(j).getPlayer(),rows[ouposer_list.get(0)]);
+                    //ifcarteinf(tupleList.get(j).getPlayer(),rows[ouposer_list.get(0)]);
                     //System.out.println(ouposer_list.get(0));
+
                 }
 
             }
@@ -510,6 +513,32 @@ public class Board extends Stage {
     private void clearGrid() {  //permet
         grid.getChildren().clear();
     }
+    private void ifcarteinf(Player player,Row row){
+        String value_string1 = row.getImageViewList().get(row.getImageViewList().size()-2).getId();
+        String numberString1 = value_string1.substring("imageView".length());
+        int value_n_1 = Integer.parseInt(numberString1);
+        String value_string2 = row.getImageViewList().get(row.getImageViewList().size()-1).getId();
+        String numberString2 = value_string2.substring("imageView".length());
+        int value_n = Integer.parseInt(numberString2);
+        if(value_n<value_n_1){
+
+
+            for(int i=0; i<=row.getImageViewList().size()-2;i++){
+                Cartes carte= new Cartes(Integer.parseInt(row.getImageViewList().get(i).getId()));
+                player.getCartesRamasse().add(carte);
+                row.getImageViewList().remove(i);
+                carte=null;
+
+
+            }
+            player.calculatePenalite();
+            System.out.println(row.getImageViewList().size());
+
+
+        }
+
+    }
+
 
 
 
