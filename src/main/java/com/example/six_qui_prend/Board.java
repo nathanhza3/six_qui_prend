@@ -2,6 +2,7 @@ package com.example.six_qui_prend;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
@@ -80,6 +81,24 @@ public class Board extends Stage {
             for (Cartes carte : player.hand.getValue_list()) {
                 a+=1;
 
+                //affichage du nom du joueur
+                grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == 5 && GridPane.getColumnIndex(node) == 0);
+                String name = player.getName();
+                Label nameLabel = new Label(name);
+                nameLabel.setStyle("-fx-font-size: 18px;");
+                grid.add(nameLabel, 0, 5);
+
+                //affichage du nombre de péna du joueur
+                grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == 6 && GridPane.getColumnIndex(node) == 0);
+                int pena = player.getPenalite();
+                Label penaLabel = new Label(String.valueOf(pena)+" penalty");
+                penaLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: red;");
+                grid.add(penaLabel, 0, 6);
+
+
+
+
+
 
                 //10 cartes de la main du joueur
                 //changer source et mettre la main
@@ -98,6 +117,8 @@ public class Board extends Stage {
                 imageView.setId(""+carte.getNumber());
                 imageView.setOnMouseClicked(event -> selection(imageView));
                 //imageView.setOnMouseClicked(event2 -> player.choose_Card());
+
+
 
 
                 grid.add(imageView, a, 5);

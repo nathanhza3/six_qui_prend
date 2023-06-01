@@ -1,9 +1,8 @@
 package com.example.six_qui_prend;
 
-import java.net.URL;
 import javax.swing.ImageIcon;
 
-public class Cartes {
+public class Cartes{
     private int number;
     private int number_head;
     private ImageIcon image;
@@ -31,14 +30,6 @@ public class Cartes {
         } else {
             this.number_head = 1;
         }
-
-
-        //URL url = getClass().getResource("../../resources/com/example/six_qui_prend/clientjavafx/ui/card/" + number + ".png");
-        //this.image = new ImageIcon(url);
     }
-
-
-
-
 
 }
