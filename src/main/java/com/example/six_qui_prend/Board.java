@@ -330,6 +330,20 @@ public class Board extends Stage {
 
         }}
     public void suite_affiche_carte_main(List<Tuple> tupleList,Player player,List<Player> playerList2,int p) {
+        //affichage du nom du joueur
+        grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == 5 && GridPane.getColumnIndex(node) == 0);
+        String name = player.getName();
+        Label nameLabel = new Label(name);
+        nameLabel.setStyle("-fx-font-size: 18px;");
+        grid.add(nameLabel, 0, 5);
+
+        //affichage du nombre de péna du joueur
+        grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == 6 && GridPane.getColumnIndex(node) == 0);
+        int pena = player.getPenalite();
+        Label penaLabel = new Label(String.valueOf(pena)+" penalty");
+        penaLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: red;");
+        grid.add(penaLabel, 0, 6);
+
         p+=1;
         if (p<=playerList2.size()) {
 
@@ -378,6 +392,7 @@ public class Board extends Stage {
 
                 suite_affiche_carte_main(tupleList, playerList2.get(nextPlayerIndex), playerList2,x);
                 affichecartePlateau(rows);
+
 
 
             });
@@ -674,4 +689,3 @@ public class Board extends Stage {
 
 
 }
-
