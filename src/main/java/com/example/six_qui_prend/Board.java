@@ -37,10 +37,21 @@ public class Board extends Stage {
         grid.setVgap(10);
         grid.setHgap(10);
         Scene scene = new Scene(grid, 1300, 700);
+        /*
+        String imagePath = "com/example/six_qui_prend/clientjavafx/ui/fond-ecran.png";
+        Image backgroundImage = new Image(getClass().getClassLoader().getResourceAsStream(imagePath));
+
+        BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+
+        Background background1 = new Background(background);
+
+        grid.setBackground(background1);
+
+         */
         setScene(scene);
         setTitle("distribution");
 
-       // ca ne doit pas être ici c'est pour tester
+        // ca ne doit pas être ici c'est pour tester
         //jusque ici et retirer meme le player 1
         affichecartePlateau_debut(deck);
 
@@ -195,46 +206,46 @@ public class Board extends Stage {
 
             if (p<=playerList.size()){
 
-            for (Cartes carte : player.hand.getValue_list()) {
-                a+=1;
+                for (Cartes carte : player.hand.getValue_list()) {
+                    a+=1;
 
-                //affichage du nom du joueur
-                grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == 5 && GridPane.getColumnIndex(node) == 0);
-                String name = player.getName();
-                Label nameLabel = new Label(name);
-                nameLabel.setStyle("-fx-font-size: 18px;");
-                grid.add(nameLabel, 0, 5);
+                    //affichage du nom du joueur
+                    grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == 5 && GridPane.getColumnIndex(node) == 0);
+                    String name = player.getName();
+                    Label nameLabel = new Label(name);
+                    nameLabel.setStyle("-fx-font-size: 18px;");
+                    grid.add(nameLabel, 0, 5);
 
-                //affichage du nombre de péna du joueur
-                grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == 6 && GridPane.getColumnIndex(node) == 0);
-                int pena = player.getPenalite();
-                Label penaLabel = new Label(String.valueOf(pena)+" penalty");
-                penaLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: red;");
-                grid.add(penaLabel, 0, 6);
-
-
+                    //affichage du nombre de péna du joueur
+                    grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == 6 && GridPane.getColumnIndex(node) == 0);
+                    int pena = player.getPenalite();
+                    Label penaLabel = new Label(String.valueOf(pena)+" penalty");
+                    penaLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: red;");
+                    grid.add(penaLabel, 0, 6);
 
 
 
 
-                //10 cartes de la main du joueur
-                //changer source et mettre la main
-
-                //int j= i+PLAYER_ID*10; //comme ça le 1 joueur(avec un id=0) ça va de 1 à 10 ET le 2ème de 11à20 ect..
-                //int a = Deck[i];   prendre la valeur de la ième carte du deck
 
 
+                    //10 cartes de la main du joueur
+                    //changer source et mettre la main
 
-                //player.hand.getValue_i(i);
-                //String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + player.hand.getValue()[i].getNumber() + ".png";
+                    //int j= i+PLAYER_ID*10; //comme ça le 1 joueur(avec un id=0) ça va de 1 à 10 ET le 2ème de 11à20 ect..
+                    //int a = Deck[i];   prendre la valeur de la ième carte du deck
 
-                String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + carte.getNumber() + ".png";
-                Image card = chargeImage(imagePath);
-                ImageView imageView = new ImageView(card);
-                imageView.setId("" + carte.getNumber());
-                imageView.setOnMouseClicked(event -> selection(imageView, carte,player));
 
-                //imageView.setOnMouseClicked(event2 -> player.choose_Card());
+
+                    //player.hand.getValue_i(i);
+                    //String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + player.hand.getValue()[i].getNumber() + ".png";
+
+                    String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + carte.getNumber() + ".png";
+                    Image card = chargeImage(imagePath);
+                    ImageView imageView = new ImageView(card);
+                    imageView.setId("" + carte.getNumber());
+                    imageView.setOnMouseClicked(event -> selection(imageView, carte,player));
+
+                    //imageView.setOnMouseClicked(event2 -> player.choose_Card());
 
 
 
@@ -256,17 +267,17 @@ public class Board extends Stage {
 
 
 
-                grid.add(imageView, a, 5);
+                    grid.add(imageView, a, 5);
 
-            }
-            //permet de passer à l'autre joueur en appuyant
-            int nextPlayerIndex = (player.getNumber()) % playerList.size(); //Cheat code +3/20
-            Button nextPlayerButton = new Button("Next Player to choose a card");
-            int x=p;
-            nextPlayerButton.setOnAction(e -> affichecarteMain(playerList.get(nextPlayerIndex),playerList,x));
-            grid.add(nextPlayerButton, 12, 5);
+                }
+                //permet de passer à l'autre joueur en appuyant
+                int nextPlayerIndex = (player.getNumber()) % playerList.size(); //Cheat code +3/20
+                Button nextPlayerButton = new Button("Next Player to choose a card");
+                int x=p;
+                nextPlayerButton.setOnAction(e -> affichecarteMain(playerList.get(nextPlayerIndex),playerList,x));
+                grid.add(nextPlayerButton, 12, 5);
 
-        } else if(p>playerList.size())  {
+            } else if(p>playerList.size())  {
                 grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == 5 && GridPane.getColumnIndex(node)==12);
                 List<Tuple> tupleList=quijoue(playerList,cartesList);
                 List<Player> playerList2=new ArrayList<>();
@@ -282,7 +293,7 @@ public class Board extends Stage {
 
         }
 
-            catch (Exception e) {
+        catch (Exception e) {
             throw new RuntimeException(e);
 
         }
@@ -314,11 +325,18 @@ public class Board extends Stage {
 
         }
 
-    catch (Exception e) {
-        throw new RuntimeException(e);
+        catch (Exception e) {
+            throw new RuntimeException(e);
 
-    }}
+        }}
     public void suite_affiche_carte_main(List<Tuple> tupleList,Player player,List<Player> playerList2){
+        grid.getChildren().removeIf(node -> {
+            Integer rowIndex = GridPane.getRowIndex(node);
+            Integer columnIndex = GridPane.getColumnIndex(node);
+            return rowIndex != null && columnIndex != null &&
+                    rowIndex >= 0 && rowIndex <= 3 &&
+                    columnIndex == 0;
+        });
         int index = -1; // Initialiser l'index à -1 (valeur par défaut si l'objet n'est pas trouvé)
 
         for (int i = 0; i < playerList2.size(); i++) {
@@ -349,8 +367,16 @@ public class Board extends Stage {
 
             int nextPlayerIndex = (index) % playerList2.size(); //Cheat code +3/20
             Button nextPlayerButton2 = new Button("next");
+            int nextPlayerIndex = (player.getNumber()) % playerList2.size(); //Cheat code +3/20
+            Button nextPlayerButton2 = new Button("Next Player to place a card");
 
-            nextPlayerButton2.setOnAction(e -> suite_affiche_carte_main( tupleList,playerList2.get(nextPlayerIndex),playerList2));
+            nextPlayerButton2.setOnAction(e -> {
+                suite_affiche_carte_main( tupleList,playerList2.get(nextPlayerIndex),playerList2);
+                affichecartePlateau(rows);
+
+
+
+            });
             grid.add(nextPlayerButton2, 12, 5);
 
 
@@ -360,16 +386,16 @@ public class Board extends Stage {
 
     public void cache_main(){
         try{
-        for (int b = 1; b <= 10; b++) {
-            String newImagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/blanc.png";
-            Image newImage = chargeImage(newImagePath);
-            ImageView blanc = new ImageView(newImage);
-            grid.add(blanc, b, 5);
-        }
-    }catch (Exception e) {
-        throw new RuntimeException(e);
+            for (int b = 1; b <= 10; b++) {
+                String newImagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/blanc.png";
+                Image newImage = chargeImage(newImagePath);
+                ImageView blanc = new ImageView(newImage);
+                grid.add(blanc, b, 5);
+            }
+        }catch (Exception e) {
+            throw new RuntimeException(e);
 
-    }
+        }
     }
 
     public static Image chargeImage(String url) throws Exception{
@@ -451,32 +477,40 @@ public class Board extends Stage {
 
 
         tuple2List.sort(Comparator.comparingInt(Tuple2::getValue));
-            if(value<tuple2List.get(0).getValue()){
-                ouposer_list.add(0);
-                ouposer_list.add(1);
-                ouposer_list.add(2);
-                ouposer_list.add(3);
-            } else if (value>tuple2List.get(3).getValue()) {
-                ouposer_list.add(tuple2List.get(3).getRow());
-            } else if (value>tuple2List.get(2).getValue()) {
-                ouposer_list.add(tuple2List.get(2).getRow());
-            }else if (value>tuple2List.get(1).getValue()) {
-                ouposer_list.add(tuple2List.get(1).getRow());
-            }else if (value>tuple2List.get(0).getValue()) {
-                ouposer_list.add(tuple2List.get(0).getRow());
-            }
+        if(value<tuple2List.get(0).getValue()){
+            ouposer_list.add(0);
+            ouposer_list.add(1);
+            ouposer_list.add(2);
+            ouposer_list.add(3);
+        } else if (value>tuple2List.get(3).getValue()) {
+            ouposer_list.add(tuple2List.get(3).getRow());
+        } else if (value>tuple2List.get(2).getValue()) {
+            ouposer_list.add(tuple2List.get(2).getRow());
+        }else if (value>tuple2List.get(1).getValue()) {
+            ouposer_list.add(tuple2List.get(1).getRow());
+        }else if (value>tuple2List.get(0).getValue()) {
+            ouposer_list.add(tuple2List.get(0).getRow());
+        }
 
         return ouposer_list;
     }
     private void placerCarte(Row row, Cartes carte){
+        grid.getChildren().removeIf(node -> {
+            Integer rowIndex = GridPane.getRowIndex(node);
+            Integer columnIndex = GridPane.getColumnIndex(node);
+            return rowIndex != null && columnIndex != null &&
+                    rowIndex >= 0 && rowIndex <= 3 &&
+                    columnIndex == 0;
+        });
+
         try{
 
-        String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + carte.getNumber() + ".png";
-        Image carteImage = chargeImage(imagePath);
-        ImageView imageView1 = new ImageView(carteImage);
-        imageView1.setId("imageView" + carte.getNumber());
+            String imagePath = "src/main/resources/com/example/six_qui_prend/clientjavafx/ui/card/" + carte.getNumber() + ".png";
+            Image carteImage = chargeImage(imagePath);
+            ImageView imageView1 = new ImageView(carteImage);
+            imageView1.setId("imageView" + carte.getNumber());
 
-        row.getImageViewList().add(imageView1);
+            row.getImageViewList().add(imageView1);
 
         /*
         int index = -1; // Initialiser l'index à -1 (valeur par défaut si l'élément n'est pas trouvé)
@@ -526,62 +560,62 @@ public class Board extends Stage {
 
     }
 
-    
+
     public void addbutton(List<Integer> liste,  Cartes carte){
 
         if (liste.size() == 1 && liste.contains(0)) {
-           Button addPlayerButton = new Button("->");
-           row_choisie=rows[0];
-           addPlayerButton.setOnAction(e -> placerCarte(rows[0], carte ));
+            Button addPlayerButton = new Button("->");
+            row_choisie=rows[0];
+            addPlayerButton.setOnAction(e -> placerCarte(rows[0], carte ));
 
-           grid.add(addPlayerButton, 0,  0);
+            grid.add(addPlayerButton, 0,  0);
         }else if (liste.size() == 1 && liste.contains(1)){
-             Button addPlayerButton = new Button("->");
+            Button addPlayerButton = new Button("->");
             row_choisie=rows[1];
-             addPlayerButton.setOnAction(e -> placerCarte(rows[1], carte ));
+            addPlayerButton.setOnAction(e -> placerCarte(rows[1], carte ));
 
-             grid.add(addPlayerButton, 0,  1);
+            grid.add(addPlayerButton, 0,  1);
         }else if (liste.size() == 1 && liste.contains(2)){
-              Button addPlayerButton = new Button("->");
-              row_choisie=rows[2];
-              addPlayerButton.setOnAction(e -> placerCarte(rows[2], carte ));
-              grid.add(addPlayerButton, 0,  2);
+            Button addPlayerButton = new Button("->");
+            row_choisie=rows[2];
+            addPlayerButton.setOnAction(e -> placerCarte(rows[2], carte ));
+            grid.add(addPlayerButton, 0,  2);
         }else if (liste.size() == 1 && liste.contains(3)){
-              Button addPlayerButton = new Button("->");
-              row_choisie=rows[3];
-              addPlayerButton.setOnAction(e -> placerCarte(rows[3], carte ));
-              grid.add(addPlayerButton, 0,  3);
+            Button addPlayerButton = new Button("->");
+            row_choisie=rows[3];
+            addPlayerButton.setOnAction(e -> placerCarte(rows[3], carte ));
+            grid.add(addPlayerButton, 0,  3);
 
         } else if (liste.size() == 4 && liste.containsAll(List.of(0, 1, 2, 3))) {
-              Button addPlayerButton1 = new Button("->");
-              addPlayerButton1.setOnAction(e -> {
-                          placerCarte(rows[0], carte );
-                          row_choisie=rows[0];
-                      });
+            Button addPlayerButton1 = new Button("->");
+            addPlayerButton1.setOnAction(e -> {
+                placerCarte(rows[0], carte );
+                row_choisie=rows[0];
+            });
 
-              grid.add(addPlayerButton1, 0,  0);
+            grid.add(addPlayerButton1, 0,  0);
 
-              Button addPlayerButton2 = new Button("->");
-              addPlayerButton2.setOnAction(e -> {
-                  placerCarte(rows[1], carte );
-                  row_choisie=rows[1];
-              });
-              grid.add(addPlayerButton2, 0,  1);
+            Button addPlayerButton2 = new Button("->");
+            addPlayerButton2.setOnAction(e -> {
+                placerCarte(rows[1], carte );
+                row_choisie=rows[1];
+            });
+            grid.add(addPlayerButton2, 0,  1);
 
-              Button addPlayerButton3 = new Button("->");
-              addPlayerButton3.setOnAction(e -> {
-                  placerCarte(rows[2], carte );
-                  row_choisie=rows[2];
-              });
-              grid.add(addPlayerButton3, 0,  2);
+            Button addPlayerButton3 = new Button("->");
+            addPlayerButton3.setOnAction(e -> {
+                placerCarte(rows[2], carte );
+                row_choisie=rows[2];
+            });
+            grid.add(addPlayerButton3, 0,  2);
 
-              Button addPlayerButton4 = new Button("->");
-              addPlayerButton4.setOnAction(e -> {
-                  placerCarte(rows[3], carte );
-                  row_choisie=rows[3];
+            Button addPlayerButton4 = new Button("->");
+            addPlayerButton4.setOnAction(e -> {
+                placerCarte(rows[3], carte );
+                row_choisie=rows[3];
 
-              });
-              grid.add(addPlayerButton4, 0,  3);
+            });
+            grid.add(addPlayerButton4, 0,  3);
         }
     }
     private List<Tuple> quijoue(List<Player> playerList,List<Cartes> cartesList){
