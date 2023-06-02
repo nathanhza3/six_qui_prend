@@ -559,30 +559,47 @@ public class Board extends Stage {
 
 
     }
-    private void ifrowfull(Player player,Row row){
+    private void ifrowfull(Player player,Row row) {
+
+
         if(row.getImageViewList().size()>=6){
+            int index=-1;
+            for (int i = 0; i < rows.length; i++) {
+                if (rows[i] == row) {
+                     index=i;
+                }
+            }
+            System.out.println(index);
             System.out.println("ca rentre dans le if");
+//            System.out.println(row.getImageViewList().get(0));
+//            System.out.println(row.getImageViewList().get(5));
 
-            for(int i=4; i>=0;i--){
-                String carte_string = row.getImageViewList().get(i).getId();
-                String numberString = carte_string.substring("imageView".length());
-                int carte_value = Integer.parseInt(numberString);
+            for (int i=4; i > 0; i--) {
+                String value_stringi = row.getImageViewList().get(i).getId();
+                String numberStringi = value_stringi.substring("imageView".length());
+                int value_i = Integer.parseInt(numberStringi);
 
-                Cartes carte= new Cartes(carte_value);
+                Cartes carte = new Cartes(value_i);
                 player.getCartesRamasse().add(carte);
                 row.getImageViewList().remove(i);
-                carte=null;
-
-
             }
+
+
             player.calculatePenalite();
-            System.out.println(row.getImageViewList().size());
+            rows[index]=row;
+//            System.out.println(row.getImageViewList().size());
+//            System.out.println(row.getImageViewList().get(0));
+
+
 
 
         }
-        System.out.println("ca rentre pas dans le if");
 
+        else{
+            System.out.println("ca rentre pas dans le if");
+        }
     }
+
 
 
     public void addbutton(List<Integer> liste,  Cartes carte){
