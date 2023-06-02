@@ -367,6 +367,7 @@ public class Board extends Stage {
 
             addbutton(ouposer_list, carte);
 
+
             //System.out.println(row_choisie.getImageViewList().get(row_choisie.getImageViewList().size()-1));
             //row_choisie=null;
             //System.out.println(ouposer_list.get(0));
@@ -377,7 +378,7 @@ public class Board extends Stage {
             int x=p;
             int finalIndex = index;
             nextPlayerButton2.setOnAction(e -> {
-                //ifrowfull(tupleList.get(finalIndex).getPlayer(),row_choisie);
+                ifrowfull(tupleList.get(finalIndex).getPlayer(),row_choisie);
 
                 ifcarteinf(tupleList.get(finalIndex).getPlayer(),row_choisie);
                 suite_affiche_carte_main(tupleList, playerList2.get(nextPlayerIndex), playerList2,x,playerList);
@@ -557,7 +558,7 @@ public class Board extends Stage {
         if(row.getImageViewList().size()>=6){
             System.out.println("ca rentre dans le if");
 
-            for(int i=0; i<=4;i++){
+            for(int i=4; i>=0;i--){
                 String carte_string = row.getImageViewList().get(i).getId();
                 String numberString = carte_string.substring("imageView".length());
                 int carte_value = Integer.parseInt(numberString);
