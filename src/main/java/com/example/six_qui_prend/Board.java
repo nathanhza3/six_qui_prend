@@ -81,22 +81,6 @@ public class Board extends Stage {
         // Ajouter des cartes à la grille
 
     }
-    public void recupCartes(List<Player> playerList, String carteId, Row row){
-        List<Tuple> list_carte_player= new ArrayList<>();
-        for(Player player: playerList){
-            affichecarteMain(player,playerList,0);
-            Tuple tuple=new Tuple(player.choose_Card(carteId).getNumber(),player);
-            list_carte_player.add(tuple);
-        }
-        Collections.sort(list_carte_player, new Comparator<Tuple>() {
-            @Override
-            public int compare(Tuple tuple1, Tuple tuple2) {
-                return Integer.compare(tuple1.getCarte_value(), tuple2.getCarte_value());
-            }
-        });
-
-
-    }
 
     public void affichecartePlateau_debut(Deck deck)  {
         try {
@@ -398,7 +382,7 @@ public class Board extends Stage {
             int x=p;
             int finalIndex = index;
             nextPlayerButton2.setOnAction(e -> {
-                ifrowfull(tupleList.get(finalIndex).getPlayer(),row_choisie);
+                //ifrowfull(tupleList.get(finalIndex).getPlayer(),row_choisie);
 
                 ifcarteinf(tupleList.get(finalIndex).getPlayer(),row_choisie);
                 suite_affiche_carte_main(tupleList, playerList2.get(nextPlayerIndex), playerList2,x,playerList);
@@ -685,17 +669,14 @@ public class Board extends Stage {
         if(value_n<value_n_1){
 
 
-            for(int i=0; i<=row.getImageViewList().size()-2;i++){
-                String value_stringi = row.getImageViewList().get(row.getImageViewList().size()-2).getId();
+            for (int i = row.getImageViewList().size() - 2; i >= 0; i--) {
+                String value_stringi = row.getImageViewList().get(i).getId();
                 String numberStringi = value_stringi.substring("imageView".length());
                 int value_i = Integer.parseInt(numberStringi);
 
-                Cartes carte= new Cartes(value_i);
+                Cartes carte = new Cartes(value_i);
                 player.getCartesRamasse().add(carte);
                 row.getImageViewList().remove(i);
-                carte=null;
-
-
             }
             player.calculatePenalite();
             System.out.println(row.getImageViewList().size());
