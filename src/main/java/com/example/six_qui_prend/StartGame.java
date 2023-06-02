@@ -143,8 +143,8 @@ public class StartGame extends Stage {
         List<Hand> hands=creer_hand(n, deck);
         List<Player> playerList=creer_player(playerNames,  hands);
 
-
-        Board firstWindow = new Board(playerList, deck);
+        Row row=new Row();
+        Board firstWindow = new Board(playerList, deck, row);
         firstWindow.show();
     }
 

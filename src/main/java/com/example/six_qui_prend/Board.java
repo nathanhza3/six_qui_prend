@@ -29,7 +29,7 @@ public class Board extends Stage {
 
 
 
-    public  Board(List<Player> playerList,Deck deck) {
+    public  Board(List<Player> playerList,Deck deck,Row row) {
 
         grid = new GridPane();
         cartesList=new ArrayList<>();
@@ -72,6 +72,7 @@ public class Board extends Stage {
         }
 
          */
+        this.row_choisie=row;
         affichecartePlateau(rows);
         affichecarteMain(playerList.get(0),playerList,0);
 
@@ -381,8 +382,8 @@ public class Board extends Stage {
 
 
             addbutton(ouposer_list, carte);
-            //ifrowfull(tupleList.get(j).getPlayer(),row_choisie);
-            //ifcarteinf(tupleList.get(j).getPlayer(),row_choisie);
+            ifrowfull(tupleList.get(index).getPlayer(),row_choisie);
+            //ifcarteinf(tupleList.get(index).getPlayer(),row_choisie);
             //System.out.println(row_choisie.getImageViewList().get(row_choisie.getImageViewList().size()-1));
             //row_choisie=null;
             //System.out.println(ouposer_list.get(0));
