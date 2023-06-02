@@ -382,14 +382,10 @@ public class Board extends Stage {
 
 
             addbutton(ouposer_list, carte);
-            //ifrowfull(tupleList.get(index).getPlayer(),row_choisie);
-            //ifcarteinf(tupleList.get(index).getPlayer(),row_choisie);
+
             //System.out.println(row_choisie.getImageViewList().get(row_choisie.getImageViewList().size()-1));
             //row_choisie=null;
             //System.out.println(ouposer_list.get(0));
-
-
-
 
             int nextPlayerIndex = (index + 1) % playerList2.size(); //Cheat code +3/20
             System.out.println(nextPlayerIndex);
@@ -398,9 +394,8 @@ public class Board extends Stage {
             int finalIndex = index;
             nextPlayerButton2.setOnAction(e -> {
                 ifrowfull(tupleList.get(finalIndex).getPlayer(),row_choisie);
+
                 ifcarteinf(tupleList.get(finalIndex).getPlayer(),row_choisie);
-
-
                 suite_affiche_carte_main(tupleList, playerList2.get(nextPlayerIndex), playerList2,x,playerList);
 
 
@@ -603,30 +598,30 @@ public class Board extends Stage {
     public void addbutton(List<Integer> liste,  Cartes carte){
 
         if (liste.size() == 1 && liste.contains(0)) {
-            Button addPlayerButton = new Button("->");
+            Button addPlayerButton = new Button("---->");
             row_choisie=rows[0];
             addPlayerButton.setOnAction(e -> placerCarte(rows[0], carte ));
 
             grid.add(addPlayerButton, 0,  0);
         }else if (liste.size() == 1 && liste.contains(1)){
-            Button addPlayerButton = new Button("->");
+            Button addPlayerButton = new Button("---->");
             row_choisie=rows[1];
             addPlayerButton.setOnAction(e -> placerCarte(rows[1], carte ));
 
             grid.add(addPlayerButton, 0,  1);
         }else if (liste.size() == 1 && liste.contains(2)){
-            Button addPlayerButton = new Button("->");
+            Button addPlayerButton = new Button("---->");
             row_choisie=rows[2];
             addPlayerButton.setOnAction(e -> placerCarte(rows[2], carte ));
             grid.add(addPlayerButton, 0,  2);
         }else if (liste.size() == 1 && liste.contains(3)){
-            Button addPlayerButton = new Button("->");
+            Button addPlayerButton = new Button("---->");
             row_choisie=rows[3];
             addPlayerButton.setOnAction(e -> placerCarte(rows[3], carte ));
             grid.add(addPlayerButton, 0,  3);
 
         } else if (liste.size() == 4 && liste.containsAll(List.of(0, 1, 2, 3))) {
-            Button addPlayerButton1 = new Button("->");
+            Button addPlayerButton1 = new Button("---->");
             addPlayerButton1.setOnAction(e -> {
                 placerCarte(rows[0], carte );
                 row_choisie=rows[0];
@@ -634,21 +629,21 @@ public class Board extends Stage {
 
             grid.add(addPlayerButton1, 0,  0);
 
-            Button addPlayerButton2 = new Button("->");
+            Button addPlayerButton2 = new Button("---->");
             addPlayerButton2.setOnAction(e -> {
                 placerCarte(rows[1], carte );
                 row_choisie=rows[1];
             });
             grid.add(addPlayerButton2, 0,  1);
 
-            Button addPlayerButton3 = new Button("->");
+            Button addPlayerButton3 = new Button("---->");
             addPlayerButton3.setOnAction(e -> {
                 placerCarte(rows[2], carte );
                 row_choisie=rows[2];
             });
             grid.add(addPlayerButton3, 0,  2);
 
-            Button addPlayerButton4 = new Button("->");
+            Button addPlayerButton4 = new Button("---->");
             addPlayerButton4.setOnAction(e -> {
                 placerCarte(rows[3], carte );
                 row_choisie=rows[3];
@@ -685,7 +680,11 @@ public class Board extends Stage {
 
 
             for(int i=0; i<=row.getImageViewList().size()-2;i++){
-                Cartes carte= new Cartes(Integer.parseInt(row.getImageViewList().get(i).getId()));
+                String value_stringi = row.getImageViewList().get(row.getImageViewList().size()-2).getId();
+                String numberStringi = value_stringi.substring("imageView".length());
+                int value_i = Integer.parseInt(numberStringi);
+
+                Cartes carte= new Cartes(value_i);
                 player.getCartesRamasse().add(carte);
                 row.getImageViewList().remove(i);
                 carte=null;
