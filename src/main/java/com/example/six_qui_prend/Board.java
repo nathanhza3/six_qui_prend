@@ -382,21 +382,23 @@ public class Board extends Stage {
 
 
             addbutton(ouposer_list, carte);
-            ifrowfull(tupleList.get(index).getPlayer(),row_choisie);
+            //ifrowfull(tupleList.get(index).getPlayer(),row_choisie);
             //ifcarteinf(tupleList.get(index).getPlayer(),row_choisie);
             //System.out.println(row_choisie.getImageViewList().get(row_choisie.getImageViewList().size()-1));
             //row_choisie=null;
             //System.out.println(ouposer_list.get(0));
 
 
-            //ifrowfull(tupleList.get(index).getPlayer(),row_choisie);
-            //ifcarteinf(tupleList.get(index).getPlayer(),row_choisie);
+
 
             int nextPlayerIndex = (index + 1) % playerList2.size(); //Cheat code +3/20
             System.out.println(nextPlayerIndex);
             Button nextPlayerButton2 = new Button("Next Player to place a card");
             int x=p;
+            int finalIndex = index;
             nextPlayerButton2.setOnAction(e -> {
+                ifrowfull(tupleList.get(finalIndex).getPlayer(),row_choisie);
+                ifcarteinf(tupleList.get(finalIndex).getPlayer(),row_choisie);
 
 
                 suite_affiche_carte_main(tupleList, playerList2.get(nextPlayerIndex), playerList2,x,playerList);
