@@ -37,6 +37,17 @@ public class Board extends Stage {
         grid.setVgap(10);
         grid.setHgap(10);
         Scene scene = new Scene(grid, 1300, 700);
+        /*
+        String imagePath = "com/example/six_qui_prend/clientjavafx/ui/fond-ecran.png";
+        Image backgroundImage = new Image(getClass().getClassLoader().getResourceAsStream(imagePath));
+
+        BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+
+        Background background1 = new Background(background);
+
+        grid.setBackground(background1);
+
+         */
         setScene(scene);
         setTitle("distribution");
 
