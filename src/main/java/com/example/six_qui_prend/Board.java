@@ -389,7 +389,7 @@ public class Board extends Stage {
             //System.out.println(ouposer_list.get(0));
 
 
-            //ifrowfull(tupleList.get(index).getPlayer(),row_choisie);
+
             //ifcarteinf(tupleList.get(index).getPlayer(),row_choisie);
 
             int nextPlayerIndex = (index + 1) % playerList2.size(); //Cheat code +3/20
@@ -398,6 +398,7 @@ public class Board extends Stage {
             int x=p;
             int finalIndex = index;
             nextPlayerButton2.setOnAction(e -> {
+                ifrowfull(tupleList.get(finalIndex).getPlayer(),row_choisie);
 
                 ifcarteinf(tupleList.get(finalIndex).getPlayer(),row_choisie);
                 suite_affiche_carte_main(tupleList, playerList2.get(nextPlayerIndex), playerList2,x,playerList);
