@@ -287,7 +287,7 @@ public class Board extends Stage {
                     playerList2.add(tupleList.get(j).getPlayer());
 
                 }
-                suite_affiche_carte_main(tupleList,tupleList.get(0).getPlayer(),playerList2,0);
+                suite_affiche_carte_main(tupleList,tupleList.get(0).getPlayer(),playerList2,0,playerList);
 
 
 
@@ -331,7 +331,7 @@ public class Board extends Stage {
             throw new RuntimeException(e);
 
         }}
-    public void suite_affiche_carte_main(List<Tuple> tupleList,Player player,List<Player> playerList2,int p) {
+    public void suite_affiche_carte_main(List<Tuple> tupleList,Player player,List<Player> playerList2,int p,List<Player> playerList) {
         //affichage du nom du joueur
         grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == 5 && GridPane.getColumnIndex(node) == 0);
         String name = player.getName();
@@ -386,7 +386,7 @@ public class Board extends Stage {
             //System.out.println(ouposer_list.get(0));
 
 
-            ifrowfull(tupleList.get(index).getPlayer(),row_choisie);
+            //ifrowfull(tupleList.get(index).getPlayer(),row_choisie);
             //ifcarteinf(tupleList.get(index).getPlayer(),row_choisie);
 
             int nextPlayerIndex = (index + 1) % playerList2.size(); //Cheat code +3/20
@@ -396,7 +396,7 @@ public class Board extends Stage {
             nextPlayerButton2.setOnAction(e -> {
 
 
-                suite_affiche_carte_main(tupleList, playerList2.get(nextPlayerIndex), playerList2,x);
+                suite_affiche_carte_main(tupleList, playerList2.get(nextPlayerIndex), playerList2,x,playerList);
 
 
 
@@ -419,7 +419,7 @@ public class Board extends Stage {
                         columnIndex >= 7;
             });
             System.out.println("ok");
-            affichecarteMain(playerList2.get(0),playerList2,0);
+            affichecarteMain(playerList2.get(0),playerList,0);
         }
     }
 
