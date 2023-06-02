@@ -319,23 +319,35 @@ public class Board extends Stage {
 
     }}
     public void suite_affiche_carte_main(List<Tuple> tupleList,Player player,List<Player> playerList2){
+        int index = -1; // Initialiser l'index à -1 (valeur par défaut si l'objet n'est pas trouvé)
 
-        for(int j=0;j<tupleList.size();j++) {
-            System.out.println(tupleList.get(j).getCarte_value());
+        for (int i = 0; i < playerList2.size(); i++) {
+            Player player2 = playerList2.get(i);
 
-            Cartes carte = new Cartes(tupleList.get(j).getCarte_value());
+            if (player.equals(player)) { // Comparer les objets avec equals()
+                index = i; // Mettre à jour l'index si l'objet est trouvé
+                player2=null;
 
-            List<Integer> ouposer_list = ouposer(tupleList.get(j).getPlayer(), carte);
-            System.out.println(ouposer_list.size());
+                break; // Sortir de la boucle une fois l'objet trouvé
+            }
+        }
+
+
+            System.out.println(tupleList.get(index).getCarte_value());
+
+            Cartes carte = new Cartes(tupleList.get(index).getCarte_value());
+
+            List<Integer> ouposer_list = ouposer(tupleList.get(index).getPlayer(), carte);
+
 
             addbutton(ouposer_list,carte);
-            ifrowfull(tupleList.get(j).getPlayer(),row_choisie);
+            //ifrowfull(tupleList.get(j).getPlayer(),row_choisie);
             //ifcarteinf(tupleList.get(j).getPlayer(),row_choisie);
             //System.out.println(row_choisie.getImageViewList().get(row_choisie.getImageViewList().size()-1));
             //row_choisie=null;
             //System.out.println(ouposer_list.get(0));
 
-            int nextPlayerIndex = (player.getNumber()) % playerList2.size(); //Cheat code +3/20
+            int nextPlayerIndex = (index) % playerList2.size(); //Cheat code +3/20
             Button nextPlayerButton2 = new Button("next");
 
             nextPlayerButton2.setOnAction(e -> suite_affiche_carte_main( tupleList,playerList2.get(nextPlayerIndex),playerList2));
@@ -345,7 +357,7 @@ public class Board extends Stage {
 
         }
 
-    }
+
     public void cache_main(){
         try{
         for (int b = 1; b <= 10; b++) {
