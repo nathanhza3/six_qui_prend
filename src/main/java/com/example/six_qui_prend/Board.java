@@ -290,7 +290,7 @@ public class Board extends Stage {
 
     public void selection(ImageView imageView, Cartes carte,Player player) {
         try {
-            System.out.println(imageView);
+            //System.out.println(imageView);
 
             String carteId = imageView.getId();
             System.out.println("Mon id est :"+carteId);
@@ -357,10 +357,10 @@ public class Board extends Stage {
             }
 
 
-            System.out.println(index);
+            //System.out.println(index);
 
             Cartes carte = new Cartes(tupleList.get(index).getCarte_value());
-            System.out.println(tupleList.get(index).getCarte_value());
+            //System.out.println(tupleList.get(index).getCarte_value());
 
             List<Integer> ouposer_list = ouposer(tupleList.get(index).getPlayer(), carte);
 
@@ -373,11 +373,12 @@ public class Board extends Stage {
             //System.out.println(ouposer_list.get(0));
 
             int nextPlayerIndex = (index + 1) % playerList2.size(); //Cheat code +3/20
-            System.out.println(nextPlayerIndex);
+            //System.out.println(nextPlayerIndex);
             Button nextPlayerButton2 = new Button("Next Player to place a card");
             int x=p;
             int finalIndex = index;
             nextPlayerButton2.setOnAction(e -> {
+
                 ifrowfull(tupleList.get(finalIndex).getPlayer(),row_choisie);
 
                 ifcarteinf(tupleList.get(finalIndex).getPlayer(),row_choisie);
@@ -403,10 +404,32 @@ public class Board extends Stage {
                         rowIndex >= 1 && rowIndex <= 3 &&
                         columnIndex >= 7;
             });
-            System.out.println("ok");
-            affichecarteMain(playerList2.get(0),playerList,0);
+            //System.out.println("ok");
+
+            int z = player.hand.getValue_list().size();
+            if(z!=0) {
+                affichecarteMain(playerList2.get(0), playerList, 0);
+            }
+            else {
+
+                for (Player player2 : playerList){
+                    int pena2 = player2.getPenalite();
+                    System.out.println("Le joueur "+player2.getName() +" a "+String.valueOf(pena2)+" pénalités");
+
+                int col = 6;
+                int row = 0;
+                for (Player player3 : playerList){
+
+                int pena3 = player3.getPenalite();
+                Label penaLabel3 = new Label("Le joueur "+player3.getName() +" a "+String.valueOf(pena2)+" pénalités");
+                penaLabel3.setStyle("-fx-font-size: 20px; -fx-text-fill: red;");
+                grid.add(penaLabel3, col, row);
+                row++;
+            }}
+            }}
+
         }
-    }
+
 
 
     public void cache_main(){
@@ -691,7 +714,7 @@ public class Board extends Stage {
                 row.getImageViewList().remove(i);
             }
             player.calculatePenalite();
-            System.out.println(row.getImageViewList().size());
+            //System.out.println(row.getImageViewList().size());
 
 
         }
