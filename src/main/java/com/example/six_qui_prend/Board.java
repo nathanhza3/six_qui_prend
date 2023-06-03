@@ -160,7 +160,7 @@ public class Board extends Stage {
             Integer columnIndex = GridPane.getColumnIndex(node);
             return rowIndex != null && columnIndex != null &&
                     rowIndex >= 0 && rowIndex <= 3 &&
-                    columnIndex >= 1 && columnIndex <= 7;
+                    columnIndex >= 1 && columnIndex <= 6;
         });
 
         for(int i=0;i<=f;i++){
@@ -397,6 +397,7 @@ public class Board extends Stage {
         }
         // chose a faire apres
         else {
+
             grid.getChildren().removeIf(node -> {
                 Integer rowIndex = GridPane.getRowIndex(node);
                 Integer columnIndex = GridPane.getColumnIndex(node);
@@ -412,20 +413,24 @@ public class Board extends Stage {
             }
             else {
 
-                for (Player player2 : playerList){
+                for (Player player2 : playerList) {
                     int pena2 = player2.getPenalite();
-                    System.out.println("Le joueur "+player2.getName() +" a "+String.valueOf(pena2)+" pénalités");
-
-                int col = 6;
-                int row = 0;
+                    System.out.println("Le joueur " + player2.getName() + " a " + String.valueOf(pena2) + " pénalités");
+                }
+                int X = 7;
+                int Y = 0;
                 for (Player player3 : playerList){
 
-                int pena3 = player3.getPenalite();
-                Label penaLabel3 = new Label("Le joueur "+player3.getName() +" a "+String.valueOf(pena2)+" pénalités");
-                penaLabel3.setStyle("-fx-font-size: 20px; -fx-text-fill: red;");
-                grid.add(penaLabel3, col, row);
-                row++;
-            }}
+
+                    int pena3 = player3.getPenalite();
+                    Label penaLabel3 = new Label("Le joueur "+player3.getName() +" a "+String.valueOf(pena3)+" pénalités");
+                    penaLabel3.setStyle("-fx-font-size: 20px; -fx-text-fill: red;");
+                    grid.add(penaLabel3, X, Y,8,1);
+                    Y++;
+
+
+            }
+
             }}
 
         }
